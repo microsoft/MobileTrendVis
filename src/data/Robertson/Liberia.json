@@ -1,0 +1,84 @@
+﻿{
+  "name": "Liberia",
+  "region": "Africa",
+  "data": [
+	{
+		"EnergyConsumption": [1975,650],"Population": [1975,1427168],"ArableArea": [1975,571]
+	},
+	{
+		"EnergyConsumption": [1976,846],"Population": [1976,1469158],"ArableArea": [1976,571]
+	},
+	{
+		"EnergyConsumption": [1977,834],"Population": [1977,1512670],"ArableArea": [1977,571]
+	},
+	{
+		"EnergyConsumption": [1978,860],"Population": [1978,1557914],"ArableArea": [1978,571]
+	},
+	{
+		"LifeExpectance-Women": [1979,43.5],"EnergyConsumption": [1979,853],"InfantMortality": [1979,165.1],"Population": [1979,1605036],"LifeExpectance-Men": [1979,41.8],"LifeExpectance-Both": [1979,42.6],"ArableArea": [1979,571]
+	},
+	{
+		"EnergyConsumption": [1980,883],"Population": [1980,1653089],"ArableArea": [1980,571]
+	},
+	{
+		"EnergyConsumption": [1981,893],"Population": [1981,1701806],"ArableArea": [1981,576]
+	},
+	{
+		"EnergyConsumption": [1982,841],"Population": [1982,1752706],"ArableArea": [1982,576]
+	},
+	{
+		"EnergyConsumption": [1983,900],"Population": [1983,1807890],"ArableArea": [1983,576]
+	},
+	{
+		"LifeExpectance-Women": [1984,44.8],"EnergyConsumption": [1984,890],"Population": [1984,1868259],"LifeExpectance-Men": [1984,42.8],"LifeExpectance-Both": [1984,43.8],"ArableArea": [1984,576]
+	},
+	{
+		"EnergyConsumption": [1985,837],"InfantMortality": [1985,157.7],"Population": [1985,1935410],"ArableArea": [1985,576]
+	},
+	{
+		"EnergyConsumption": [1986,841],"Population": [1986,2007231],"ArableArea": [1986,580]
+	},
+	{
+		"EnergyConsumption": [1987,829],"Population": [1987,2076455],"ArableArea": [1987,585]
+	},
+	{
+		"EnergyConsumption": [1988,862],"Population": [1988,2133303],"ArableArea": [1988,586]
+	},
+	{
+		"LifeExpectance-Women": [1989,46],"EnergyConsumption": [1989,862],"Population": [1989,2171122],"LifeExpectance-Men": [1989,43.7],"LifeExpectance-Both": [1989,44.9],"ArableArea": [1989,588]
+	},
+	{
+		"EnergyConsumption": [1990,849],"InfantMortality": [1990,150.1],"Population": [1990,2189305],"ArableArea": [1990,597]
+	},
+	{
+		"EnergyConsumption": [1991,825],"Population": [1991,2191352],"ArableArea": [1991,603]
+	},
+	{
+		"EnergyConsumption": [1992,834],"Population": [1992,2180175],"ArableArea": [1992,613]
+	},
+	{
+		"EnergyConsumption": [1993,818],"Population": [1993,2160323],"ArableArea": [1993,615]
+	},
+	{
+		"LifeExpectance-Women": [1994,47.2],"EnergyConsumption": [1994,565],"Population": [1994,2136718],"LifeExpectance-Men": [1994,44.9],"LifeExpectance-Both": [1994,46],"ArableArea": [1994,615]
+	},
+	{
+		"EnergyConsumption": [1995,450],"InfantMortality": [1995,138.5],"Population": [1995,2106120],"ArableArea": [1995,605]
+	},
+	{
+		"EnergyConsumption": [1996,460],"Population": [1996,2071562],"ArableArea": [1996,605]
+	},
+	{
+		"EnergyConsumption": [1997,480],"Population": [1997,2051573],"ArableArea": [1997,585]
+	},
+	{
+		"EnergyConsumption": [1998,480],"Population": [1998,2070347],"ArableArea": [1998,585]
+	},
+	{
+		"LifeExpectance-Women": [1999,42],"EnergyConsumption": [1999,486],"Population": [1999,2143442],"LifeExpectance-Men": [1999,39.6],"LifeExpectance-Both": [1999,40.8],"ArableArea": [1999,585]
+	},
+	{
+		"EnergyConsumption": [2000,488],"InfantMortality": [2000,179.1],"Population": [2000,2281842],"ArableArea": [2000,585]
+	}
+  ]	
+}

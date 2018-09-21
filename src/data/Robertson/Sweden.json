@@ -1,0 +1,84 @@
+﻿{
+  "name": "Sweden",
+  "region": "Europe",
+  "data": [
+	{
+		"Population": [1975,8084965],"ArableArea": [1975,3055],"EnergyConsumption": [1975,73571]
+	},
+	{
+		"Population": [1976,8117862],"ArableArea": [1976,3035],"EnergyConsumption": [1976,78988]
+	},
+	{
+		"Population": [1977,8144216],"ArableArea": [1977,3022],"EnergyConsumption": [1977,84889]
+	},
+	{
+		"Population": [1978,8168132],"ArableArea": [1978,3023],"EnergyConsumption": [1978,84464]
+	},
+	{
+		"GDPPerCapita": [1979,6453],"Population": [1979,8192567],"LifeExpectance-Women": [1979,77.5],"ArableArea": [1979,3010],"InfantMortality": [1979,10.2],"LifeExpectance-Both": [1979,74.7],"LifeExpectance-Men": [1979,72.1],"EnergyConsumption": [1979,87870]
+	},
+	{
+		"GDPPerCapita": [1980,6880],"Population": [1980,8218932],"ArableArea": [1980,3007],"EnergyConsumption": [1980,92676]
+	},
+	{
+		"GDPPerCapita": [1981,7197],"Population": [1981,8246303],"ArableArea": [1981,2998],"EnergyConsumption": [1981,94822]
+	},
+	{
+		"GDPPerCapita": [1982,7827],"Population": [1982,8272583],"ArableArea": [1982,3004],"EnergyConsumption": [1982,98067]
+	},
+	{
+		"GDPPerCapita": [1983,8778],"Population": [1983,8294607],"ArableArea": [1983,2989],"EnergyConsumption": [1983,103067]
+	},
+	{
+		"GDPPerCapita": [1984,9765],"Population": [1984,8310468], "LifeExpectance-Women": [1984,78.3],"ArableArea": [1984,2983],"LifeExpectance-Both": [1984,75.2],	"LifeExpectance-Men": [1984,72.3],"EnergyConsumption": [1984,97230]
+	},
+	{
+		"GDPPerCapita": [1985,10705],"Population": [1985,8319263],"ArableArea": [1985,2964],"InfantMortality": [1985,7.9],"EnergyConsumption": [1985,100656]
+	},
+	{
+		"GDPPerCapita": [1986,11643],"Population": [1986,8322897],"ArableArea": [1986,2954],"EnergyConsumption": [1986,103392]
+	},
+	{
+		"GDPPerCapita": [1987,12350],"Population": [1987,8325663],"ArableArea": [1987,2945],"EnergyConsumption": [1987,114324]
+	},
+	{
+		"GDPPerCapita": [1988,13357],"Population": [1988,8333422],"ArableArea": [1988,2937],"EnergyConsumption": [1988,124229]
+	},
+	{
+		"GDPPerCapita": [1989,14049],"Population": [1989,8350365],"LifeExpectance-Women": [1989,79.5],"ArableArea": [1989,2926],"LifeExpectance-Both": [1989,76.3],"LifeExpectance-Men": [1989,73.5],"EnergyConsumption": [1989,135757]
+	},
+	{
+		"GDPPerCapita": [1990,14635],"Population": [1990,8377418],"ArableArea": [1990,2912],"InfantMortality": [1990,6.8],"EnergyConsumption": [1990,133992]
+	},
+	{
+		"GDPPerCapita": [1991,15432],"Population": [1991,8413202],"ArableArea": [1991,2894],"EnergyConsumption": [1991,142556]
+	},
+	{
+		"GDPPerCapita": [1992,16317],"Population": [1992,8456653],"PCs": [1992,5.9],"ArableArea": [1992,2876],"EnergyConsumption": [1992,143683]
+	},
+	{
+		"GDPPerCapita": [1993,17318],"Population": [1993,8505836],"PCs": [1993,8.2],"ArableArea": [1993,2857],"EnergyConsumption": [1993,143286]
+	},
+	{
+		"GDPPerCapita": [1994,18163],"Population": [1994,8558830],"PCs": [1994,10.5], "LifeExpectance-Women": [1994,80.1],"ArableArea": [1994,2849],"LifeExpectance-Both": [1994,77.3], "LifeExpectance-Men": [1994,74.3],"EnergyConsumption": [1994,145497]
+	},
+	{
+		"GDPPerCapita": [1995,18616],"Population": [1995,8616521],"PCs": [1995,12.7],"ArableArea": [1995,2793],"InfantMortality": [1995,6],"EnergyConsumption": [1995,146698]
+	},
+	{
+		"GDPPerCapita": [1996,18957],"Population": [1996,8678155],"PCs": [1996,13.8],"ArableArea": [1996,2771],"EnergyConsumption": [1996,144963]
+	},
+	{
+		"GDPPerCapita": [1997,19013],"Population": [1997,8738187],"PCs": [1997,14.9],"ArableArea": [1997,2783],"EnergyConsumption": [1997,145723]
+	},
+	{
+		"GDPPerCapita": [1998,19744],"Population": [1998,8789384],"PCs": [1998,18.1],"ArableArea": [1998,2783],"EnergyConsumption": [1998,143848]
+	},
+	{
+		"GDPPerCapita": [1999,20802],"Population": [1999,8826949],"PCs": [1999,24.9],"LifeExpectance-Women": [1999,80.9],"ArableArea": [1999,2770],"LifeExpectance-Both": [1999,78.3],"LifeExpectance-Men": [1999,75.5],"EnergyConsumption": [1999,146734]
+	},
+	{
+		"GDPPerCapita": [2000,21439],"Population": [2000,8848174],"PCs": [2000,29.4],"ArableArea": [2000,2815],"InfantMortality": [2000,5.2],"EnergyConsumption": [2000,146822]
+	}
+  ]	
+}

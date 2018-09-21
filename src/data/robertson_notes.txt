@@ -1,0 +1,180 @@
+small dataset (N = 19):
+
+Australia
+Azerbaijan
+China
+Denmark
+French Polynesia * (distractor)
+Gambia
+Hungary
+Iceland
+India
+Israel * (distractor)
+Liberia
+Norway
+Russia
+Rwanda
+Saudi Arabia
+South Africa
+Sweden
+Ukraine
+United States
+
+large dataset (N = 80 includes small dataset):
+
+Croatia
+Canada
+France
+Japan
+Korea
+(+ 56 distractors)
+
+Dimensions:
+
+PCs (number of), Population, GDPPerCapita, EnergyConsumption, InfantMortality, LifeExpectance-Both, LifeExpectance-Men, LifeExpectance-Women, ArableArea
+
+Tasks (counterbalanced across visualization [x3] and dataset size [x2], 4 tasks per combination, same 2-3 tutorial tasks per combination)
+
+Tasks:
+
+TUTORIAL #1
+X: PCs
+Y: Population
+Question: Select two continents where most countries have had rapid growth in PC's, but only modest growth in population.
+Answers: Europe, North America, Oceania (pick 2)
+
+TUTORIAL #2
+X: PCs
+Y: GDPPerCapita
+Question: Select one country in Europe that has had poor growth in PC's.
+Answers: Ukraine (pick 1)
+
+TUTORIAL #3
+X: PCs
+Y: GDPPerCapita
+Question: Select three countries with very rapid growth spurt in the number of PCs per persons.
+Answers: Denmark, Iceland, Norway, Sweden, United States, Australia (pick 3)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Select 3 countries whose rate of energy consumption was faster than their rate of GDP per capita growth.
+Answers: India, China, US (pick 3)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Select 2 countries with significant decreases in energy consumption.
+Answers: Russia, Ukraine (pick 2)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Which country had the most significant decrease in GDP per capita?
+Answers: Croatia (pick 1)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Which continent had the most significant increase in GDP per capita (i.e., the continent with largest percentage of countries with significant increases in GDP).
+Answers: Europe (pick 1)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Select 2 countries whose GDPPerCaptia increased first, then decreased later.
+Answers: Russia, Ukraine (pick 2)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Which continent had the least changes in GDP per capita?
+Answers: Africa (pick 1)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Which country had the most change in GDP per capita?
+Answers: Norway (pick 1)
+
+X: EnergyConsumption
+Y: GDPPerCapita
+Question: Which 2 continents had the most significant increase in GDP per capita (i.e., contents with the highest percentage of countries with significant increases)?
+Answers: Europe, North America, Oceania (pick 2)
+
+X: InfantMortality
+Y: GDPperCapita
+Question: Select 3 countries with a high InfantMortality rate despite their high GDP.
+Answers: Saudi Arabia, Azerbaijan, South Africa (pick 3)
+
+X: InfantMortality
+Y: GDPperCapita
+Question: What continent had the least change in InfantMortality, whose GDP was changing significantly?
+Answers: Europe (pick 1)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Select two countries with decreasing InfantMortality, but little change in life expectancy.
+Answers: Azerbaijan, Hungary (pick 2)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Select a country where InfantMortality fell significantly, then increased significantly.
+Answers: Liberia (pick 1)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Select two countries whose InfantMortality dropped first, then increased later.
+Answers: Liberia, Rwanda (pick 2)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Select the 2 countries whose InfantMortality fell the most.
+Answers: Gambia, India, Saudi Arabia (pick 2)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Which continent had the least changes in InfantMortality?
+Answers: Europe (pick 1)
+
+X: LifeExpectance-Both
+Y: InfantMortality
+Question: Which continent had the least changes in Life Expectancy?
+Answers: Europe (pick 1)
+
+X: EnergyConsumption
+Y: Population
+Question: Select 2 countries whose population grew faster than their rate of energy consumption?
+Answers: India, China (pick 2)
+
+X: EnergyConsumption
+Y: Population
+Question: Select 3 countries whose rate of population growth was much slower than their rate of energy consumption other than United States.
+Answers: Canada, France, Japan, Korea (pick 3)
+
+X: LifeExpectance-Women
+Y: LifeExpectance-Men
+Question: What country had a significant reversal from increases in life expectancy to decreases?
+Answers: Liberia, Rwanda (pick 1)
+
+X: LifeExpectance-Women
+Y: LifeExpectance-Men
+Question: What country tends to have men's life expectancy decreasing faster than women's life expectancy?
+Answers: Russia (pick 1)
+
+X: LifeExpectance-Both
+Y: GDPPerCapita
+Question: Which continent has the lowest life expectancy?
+Answers: Africa (pick 1)
+
+X: LifeExpectance-Both
+Y: GDPPerCapita
+Question: To which continent do countries that have had a decrease followed by increase in GDP belong?
+Answers: Europe (pick 1)
+
+X: ArableArea
+Y: Population
+Question: What large (population over 100 million)countries have seen a decrease in their ArableArea, even as their population increases?
+Answers: Russia, USA (pick 2)
+
+X: ArableArea
+Y: Population
+Question: What country had a significant overall increases in ArableArea, but only slight increases in population?
+Answers: Australia (pick 1)
+
+"Australia"      "Austria"        "Belgium"        "Canada"         "France"         "Germany"        "Greece"         "Ireland"        "Israel"         "Italy"         
+"Japan"          "Luxembourg"     "Mexico"         "Netherlands"    "New Zealand"    "Norway"         "Portugal"       "South Korea"    "Spain"          "Sweden"        
+"Switzerland"    "Turkey"         "United Kingdom" "United States" 
