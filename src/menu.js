@@ -17,6 +17,7 @@ function menu () {
   instruction_div.append('span')
   .attr('id','instruction_text')
   .html('<span class="instruction_emphasis">BUBBLE <span class="instruction_emphasis" id="secret_sandbox">CHARTS</span> ON MOBILE PHONES</span><br>Tap on the buttons below to proceed with the experiment.');  
+  
   var navbar = d3.select('#menu_div').append('div')
   .attr('class','toolbar')
   .attr('id','navbar');
@@ -52,6 +53,11 @@ function menu () {
   .attr('type','button')
   .attr('value','4. Survey & Conclusion')
   .attr('title', '4. Survey & Conclusion');
+
+  d3.select('#menu_div').append('div')
+  .attr('class','toolbar')
+  .attr('id','menu_footer')
+  .html('<span> <a href="mailto:mabrehme@microsoft.com" target="_blank">Contact</a> | <a href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank">Privacy & Cookies</a> | <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx" target="_blank">Terms of Use</a> | © 2018 Microsoft</span>');  
 
   // var param_list = [
   //   "Life Expectancy",

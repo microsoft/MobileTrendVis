@@ -203,7 +203,6 @@ d3.carousel = function () {
         }
         else {
           var bubble_ind = chart_instance.bubbleset_points().indexOf(focus_element);
-          // chart_instance.outside_points().push(focus_element); 
           chart_instance.bubbleset_points().splice(bubble_ind,1);  
           chart_g.call(chart_instance);      
           var updated_highlight_points = chart_instance.highlight_points();

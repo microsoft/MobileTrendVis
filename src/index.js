@@ -71,6 +71,15 @@ appInsights.queue.push(function () {
 
 non_interactive = true;
 
+
+initTasks();
+
+appInsights.trackEvent("InitTasks", { 
+  "TimeStamp": new Date().valueOf(),
+  "Event": "InitTasks",
+  "user_id": globals.userID
+}); 
+
 window.addEventListener('load', function() { 
 
   imagesArray = [
@@ -112,14 +121,6 @@ window.addEventListener('load', function() {
         }
     }
   });
-
-  initTasks();
-
-  appInsights.trackEvent("InitTasks", { 
-    "TimeStamp": new Date().valueOf(),
-    "Event": "InitTasks",
-    "user_id": globals.userID
-  }); 
   
   resumptions = [];
   globals.selection_tilt_array = [];
@@ -343,11 +344,13 @@ function changeOrientation () {
   d3.select('#selector_div')
   .style('height', function(){
     if (height < width) {
+      d3.select('#annotation_div').style('height',( - 20) + 'px');
       return (height) + 'px';
     }
     else {
       var menubar_height = non_interactive ? (width / 7) : 0;
       var remaining_height = height - svg_dim - menubar_height - 10; 
+      d3.select('#annotation_div').style('height',(remaining_height - 20) + 'px');
       return (remaining_height) + 'px';
     }
   })
@@ -355,9 +358,11 @@ function changeOrientation () {
     if (height < width) {
       var menubar_width = non_interactive ? (height / 7) : 0;
       var remaining_width = width - svg_dim - menubar_width; 
+      d3.select('#annotation_div').style('width',(remaining_width - 20) + 'px');
       return (remaining_width) + 'px';
     }
     else {        
+      d3.select('#annotation_div').style('width',(width - 20) + 'px');
       return (width) + 'px';
     }      
   })
@@ -491,7 +496,66 @@ function tiltHandler(event) {
             else {
               chart_instance.current_year(year + Math.sign(tilt_time) * scale_tilt_time(Math.abs(tilt_time)));
             }    
-          }       
+          }    
+          var bubble_ind;
+          if (chart_instance.current_year() > 1981 && chart_instance.current_year() < 1989) {
+            if (chart_instance.bubbleset_points().indexOf('SAU') == -1) {
+              chart_instance.bubbleset_points().push("SAU");              
+            }
+            d3.select('#annotation_div').style('display',null);
+            d3.select('#annotation_div').select('.annotation')
+            .html('Notice the rise and fall of Saudi Arabia\'s GDP during the mid 1980s.');
+            d3.selectAll('.carousel_item').style('display','none');       
+            d3.selectAll('.carousel_clutch').style('display','none'); 
+          }   
+          else if (chart_instance.current_year() > 1990 && chart_instance.current_year() < 2000) {
+            if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }
+            if (chart_instance.bubbleset_points().indexOf('RWA') == -1) {
+              chart_instance.bubbleset_points().push("RWA");              
+            }
+            if (chart_instance.bubbleset_points().indexOf('GMB') == -1) {
+              chart_instance.bubbleset_points().push("GMB");              
+            }
+            if (chart_instance.bubbleset_points().indexOf('LBR') == -1) {
+              chart_instance.bubbleset_points().push("LBR");              
+            }
+            if (chart_instance.bubbleset_points().indexOf('ZAF') == -1) {
+              chart_instance.bubbleset_points().push("ZAF");              
+            }            
+            d3.select('#annotation_div').style('display',null);
+            d3.select('#annotation_div').select('.annotation')
+            .html('Notice how the African nations diverge from one another during the 1990s.');
+            d3.selectAll('.carousel_item').style('display','none');       
+            d3.selectAll('.carousel_clutch').style('display','none'); 
+          }
+          else {
+            if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }
+            if (chart_instance.bubbleset_points().indexOf('RWA') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('RWA');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }
+            if (chart_instance.bubbleset_points().indexOf('GMB') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('GMB');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }
+            if (chart_instance.bubbleset_points().indexOf('LBR') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('LBR');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }
+            if (chart_instance.bubbleset_points().indexOf('ZAF') != -1) {
+              bubble_ind = chart_instance.bubbleset_points().indexOf('ZAF');
+              chart_instance.bubbleset_points().splice(bubble_ind,1); 
+            }            
+            d3.select('#annotation_div').style('display','none');
+            d3.select('#annotation_div').select('.annotation')
+            .html('');
+          }
           chart_g.call(chart_instance);  
         }    
   

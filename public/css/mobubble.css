@@ -414,6 +414,16 @@ and (-webkit-min-device-pixel-ratio: 2) {
     height: 40px;
   }
 
+  #annotation_div {
+    margin: 10px;   
+    position: absolute;
+    bottom: 0px;  
+  }
+
+  .annotation {
+    font-size: 1.2em;
+  }
+
   .clutch_enabled, .pin_enabled {
     stroke: #999;
     stroke-width: 2px;  

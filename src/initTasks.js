@@ -1,5 +1,5 @@
 var globals = require("./globals");
-var nationData = require("./data/robertsonData");
+var nationData = require("./data/studyData");
 var taskList = require("./tasks/taskList");
 
 function initTasks() {
@@ -8,9 +8,9 @@ function initTasks() {
     d.orig_code = d.code;
   });
 
-  var rand_condition = Math.random();
+  // var rand_condition = Math.random();
 
-  globals.condition = (rand_condition <= 0.67) ? 'animation' : 'stepper'; 
+  globals.condition = 'stepper'; 
 
   // globals.condition = 'stepper';
 

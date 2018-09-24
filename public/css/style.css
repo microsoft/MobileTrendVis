@@ -612,7 +612,7 @@ and (orientation: portrait) {
     padding-top: 10px;
   }
   
-  #instruction_text, #button_text, #orientation_div {
+  #instruction_text, #button_text, #orientation_div, #menu_footer{
     font-size: 0.7em;
     position: relative;
     float: left;
@@ -622,6 +622,22 @@ and (orientation: portrait) {
     transform: translate(-50%, -50%);
     text-align: center; 
     user-select: none;
+  }
+
+  #menu_footer {
+    font-size: 0.85em;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    top: unset;
+  }
+
+  #menu_footer a {
+    color: #fff;
+  }
+
+  #menu_footer a:visited {
+    color: #ccc;
   }
 
   .consent_text {

@@ -1,5 +1,5 @@
 var d3 = require("d3");
-var nationData = require("./data/robertsonData");
+var nationData = require("./data/studyData");
 var globals = require("./globals"); 
 
 function countrySelector () {

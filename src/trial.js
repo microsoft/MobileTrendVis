@@ -1,7 +1,7 @@
 var d3 = require("d3");
 var globals = require("./globals");
 var chart = require("./chart");
-var nationData = require("./data/robertsonData");
+var nationData = require("./data/studyData");
 var countrySelector = require("./countrySelector");
 
 function trial () {

@@ -2,7 +2,7 @@ var d3 = require("d3");
 var globals = require("./globals");
 var chart = require("./chart");
 var carousel = require("./carousel");
-var nationData = require("./data/robertsonData");
+var nationData = require("./data/studyData");
 
 function sandbox () {
 
@@ -33,11 +33,13 @@ function sandbox () {
       d3.select('#selector_div')
       .style('height', function(){
       if (height < width) {
+        d3.select('#annotation_div').style('height',(height - 20) + 'px');
         return (height) + 'px';
       }
       else {
         var menubar_height = non_interactive ? (width / 7) : 0;
         var remaining_height = height - svg_dim - menubar_height - 10; 
+        d3.select('#annotation_div').style('height',(remaining_height - 20) + 'px');
         return (remaining_height) + 'px';
       }
       })
@@ -45,9 +47,11 @@ function sandbox () {
         if (height < width) {
           var menubar_width = non_interactive ? (height / 7) : 0;
           var remaining_width = width - svg_dim - menubar_width; 
+          d3.select('#annotation_div').style('width',(remaining_width - 20) + 'px');
           return (remaining_width) + 'px';
         }
         else {        
+          d3.select('#annotation_div').style('width',(width - 20) + 'px');
           return (width) + 'px';
         }      
       })
@@ -210,7 +214,12 @@ function sandbox () {
       .attr('id','carousel_svg');  
       
       carousel_g = carousel_svg.append('g')
-      .attr('id','carousel_g');    
+      .attr('id','carousel_g').style('display','inline');    
+      
+      d3.select('#selector_div').append('div')
+      .attr('id','annotation_div')
+      .style('display','none')
+      .html('<span class="annotation"></span>');
     }
   
     defs = d3.select('#main_svg').append('defs');

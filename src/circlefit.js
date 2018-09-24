@@ -1,4 +1,7 @@
 /*
+
+https://github.com/Meakk/circle-fit
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Michael MIGLIORE

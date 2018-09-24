@@ -1996,9 +1996,10 @@ d3.chart = function () {
           setTimeout(function(){
             carousel_g.call(carousel_instance);
           }, 275);
+          d3.select('#annotation_div').style('display','none');
           if (highlight_points.length > 0) {
             d3.selectAll('.carousel_item').style('display','inline');       
-            d3.selectAll('.carousel_clutch').style('display','inline'); 
+            d3.selectAll('.carousel_clutch').style('display','inline');             
           }
         }
       }
@@ -2006,6 +2007,7 @@ d3.chart = function () {
       function hideCarousel() {
         d3.selectAll('.carousel_item').style('display','none');       
         d3.selectAll('.carousel_pin').style('display','none'); 
+        d3.select('#annotation_div').style('display','none');
         if (highlight_points.length > 0) {
           d3.selectAll('.carousel_clutch').style('display','inline'); 
         }
