@@ -25,50 +25,6 @@
   <body ontouchstart="">
     <script type="text/javascript" src="main.js" charset="UTF-8"></script>
     <script src="bubblesets.js" charset="utf-8"></script>    
-    <script type="text/javascript" src="preloader.js" charset="UTF-8"></script>  
-     
-    <script>
-
-      imagesArray = [
-        "assets/battery.svg",
-        "assets/brightness.svg",
-        "assets/done.svg",
-        "assets/fullscreen.png",
-        "assets/grid.svg",
-        "assets/holdingphone.svg",
-        "assets/line.svg",
-        "assets/na.svg",
-        "assets/next_gold.svg",
-        "assets/next.svg",
-        "assets/nonav.svg",
-        "assets/play.svg",
-        "assets/portrait.svg",
-        "assets/prev_gold.svg",
-        "assets/prev_grey.svg",
-        "assets/prev.svg",
-        "assets/tilt.svg",
-        "assets/wifi.svg"
-      ];
-
-      new preLoader(imagesArray, {
-        onProgress: function(img, imageEl, index){
-            // fires every time an image is done or errors.
-            // imageEl will be falsy if error
-            // console.log('just ' +  (!imageEl ? 'failed: ' : 'loaded: ') + img);
-            // imageContainer.appendChild(imageEl);
-            // can access any propery of this
-            // console.log(this.completed.length + this.errors.length + ' / ' + this.queue.length + ' done');
-        },
-        onComplete: function(loaded, errors){
-            // fires when whole list is done. cache is primed.
-            // console.log('assets loaded:', loaded);
-            // imageContainer.style.display = 'block';
-            if (errors){
-                console.log('the following failed', errors);
-            }
-        }
-      });
-    </script>
 
   </body>
 

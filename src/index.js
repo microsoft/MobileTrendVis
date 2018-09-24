@@ -1,4 +1,5 @@
 var d3 = require("d3");
+var preLoader = require('pre-loader');
 var globals = require("./globals");
 var initTasks = require("./initTasks");
 var sandbox = require("./sandbox");
@@ -7,7 +8,6 @@ var introduction = require("./introduction");
 var questionnaire = require("./questionnaire");
 var trial = require("./trial");
 var countrySelector = require("./countrySelector");
-var carousel = require("./carousel");
 var menu = require("./menu");     
 
 function setCookie (c_name, value, exdays)
@@ -69,17 +69,57 @@ appInsights.queue.push(function () {
 
 /* jshint ignore:end */
 
-initTasks();
-
-appInsights.trackEvent("InitTasks", { 
-  "TimeStamp": new Date().valueOf(),
-  "Event": "InitTasks",
-  "user_id": globals.userID
-});
-
 non_interactive = true;
 
 window.addEventListener('load', function() { 
+
+  imagesArray = [
+    "assets/battery.svg",
+    "assets/brightness.svg",
+    "assets/done.svg",
+    "assets/fullscreen.png",
+    "assets/grid.svg",
+    "assets/holdingphone.svg",
+    "assets/line.svg",
+    "assets/na.svg",
+    "assets/next_gold.svg",
+    "assets/next.svg",
+    "assets/nonav.svg",
+    "assets/play.svg",
+    "assets/portrait.svg",
+    "assets/prev_gold.svg",
+    "assets/prev_grey.svg",
+    "assets/prev.svg",
+    "assets/tilt.svg",
+    "assets/wifi.svg"
+  ];
+
+  new preLoader(imagesArray, {
+    onProgress: function(img, imageEl, index){
+        // fires every time an image is done or errors.
+        // imageEl will be falsy if error
+        // console.log('just ' +  (!imageEl ? 'failed: ' : 'loaded: ') + img);
+        // imageContainer.appendChild(imageEl);
+        // can access any propery of this
+        // console.log(this.completed.length + this.errors.length + ' / ' + this.queue.length + ' done');
+    },
+    onComplete: function(loaded, errors){
+        // fires when whole list is done. cache is primed.
+        console.log('assets loaded:', loaded);
+        // imageContainer.style.display = 'block';
+        if (errors){
+            console.log('the following failed', errors);
+        }
+    }
+  });
+
+  initTasks();
+
+  appInsights.trackEvent("InitTasks", { 
+    "TimeStamp": new Date().valueOf(),
+    "Event": "InitTasks",
+    "user_id": globals.userID
+  }); 
   
   resumptions = [];
   globals.selection_tilt_array = [];

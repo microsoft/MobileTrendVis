@@ -11,7 +11,8 @@
     "csv-loader": "^2.1.1",
     "d3": "^4.9.1",
     "d3-rect": "^1.0.1",
-    "flubber": "^0.4.2"
+    "flubber": "^0.4.2",
+    "pre-loader": "^0.5.0"
   },
   "devDependencies": {
     "concurrently": "^3.6.1",
