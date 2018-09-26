@@ -625,18 +625,17 @@ and (orientation: portrait) {
   }
 
   #menu_footer {
-    font-size: 0.85em;
     position: fixed;
     bottom: 0px;
     width: 100%;
     top: unset;
   }
 
-  #menu_footer a {
+  #menu_footer a, #consent_div a {
     color: #fff;
   }
 
-  #menu_footer a:visited {
+  #menu_footer a:visited, #consent_div a:visited {
     color: #ccc;
   }
 

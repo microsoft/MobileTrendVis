@@ -27,8 +27,8 @@ function consent (scene) {
 
       consent_content_div.append('span')
       .attr('class','consent_text')
-      .html('<span class="instruction_emphasis">MICROSOFT<br>Experiment Participation Consent Form</span><br>' +
-      '<span style="text-align:left; font-size:0.9em;"><p>Thank you for deciding to volunteer in a Microsoft Research experiment. The researchers are studying how different ways to present quantities that change over time help with respect to the perception of trends. Please note that you have no obligation to participate and you may decide to terminate your participation at any time. What follows is a description of the experiment, and your consent to participate. Please read this information carefully.</p></span>')
+      .html('<span class="instruction_emphasis">Microsoft Research<br>Project Participation Consent Form</span><br>' +
+      '<span style="text-align:left; font-size:0.7em;"><p>Thank you for deciding to volunteer in a Microsoft Corporation research project. The purpose of this project is to study the perception of statistical charts on mobile phones. You have no obligation to participate and you may decide to terminate your participation at any time. You also understand that the researcher has the right to withdraw you from participation in the project at any time. Below is a description of the research project, and your consent to participate. Read this information carefully.</p></span>')
       .on('touchstart', function() {    
         d3.event.preventDefault(); 
       });    
@@ -44,27 +44,9 @@ function consent (scene) {
       .attr('class','consent_text')
       .html(
         '<span class="instruction_emphasis">Title of Experiment:</span><br>' +
-        '<span style="text-align:left; font-size:0.9em;"><p><em>Bubble Charts on Mobile Phones</em></p></span>' +
-        '<span class="instruction_emphasis">Benefits and Risks:</span><br>' +
-        '<span style="text-align:left; font-size:0.9em;"><p>This experiment will inform the design of information visualization tools.</p></span>' +
-        '<span style="text-align:left; font-size:0.9em;"><p>There are no known risks associated with this experiment.</p></span>'        
-      )
-      .on('touchstart', function() {    
-        d3.event.preventDefault(); 
-      });    
-      
-      d3.select('#consent_div')
-      .style('visibility','visible');
-
-    break;
-
-    case 2:
-    
-      consent_content_div.append('span')
-      .attr('class','consent_text')
-      .html(         
+        '<span style="text-align:left; font-size:0.9em;"><p><em>Bubble Charts on Mobile Phones</em></p></span>' +        
         '<span class="instruction_emphasis">Procedure:</span><br>' +
-        '<span style="text-align:left; font-size:0.9em;"><p>The experiment will take approximately <span class="instruction_emphasis">20 minutes</span> to complete. You will be asked to respond to a series of questions relating to  <span class="instruction_emphasis">bubble charts</span>, a type of chart that will be explained shortly. Sessions will be logged anonymously to calculate accuracy and response times. The experimental procedure is as follows:</p>' +
+        '<span style="text-align:left; font-size:0.7em;"><p>The experiment will take approximately <span class="instruction_emphasis">15 minutes</span> to complete. You will be asked to respond to a series of questions relating to  <span class="instruction_emphasis">bubble charts</span>, a type of chart that will be explained shortly. Sessions will be logged anonymously to calculate accuracy and response times. The experimental procedure is as follows:</p>' +
         '<ol>' +
         '<li> An introductory tutorial.' +
         '<li> <span class="instruction_emphasis">13 presentations</span> of bubble charts, each with an associated question.' +
@@ -82,14 +64,30 @@ function consent (scene) {
 
     break;
 
-    case 3:
-    
+    case 2:
+
       consent_content_div.append('span')
       .attr('class','consent_text')
-      .html(         
-        '<span class="instruction_emphasis">Research Data:</span><br>' +
-        '<span style="text-align:left; font-size:0.9em;"><p>In this experiment, we will <span class="instruction_emphasis">NOT</span> be collecting any personal information about you.</p></span>' + 
-        '<span style="text-align:left; font-size:0.7em;"><p>You give your permission to our research team at Microsoft Research to collect information about your participation in the research project in the formats and medium ("Data") described previously. Microsoft shall control all Data in connection with the research project. You may also provide suggestions, comments or other feedback ("Feedback") to Microsoft with respect to the research project. Feedback is entirely voluntary and the research team at Microsoft shall be free to use, disclose, license, or otherwise distribute, and exploit the Feedback and Data as authorized by the research participant. If you work for Microsoft, no Data or Feedback collected from you will be shared directly with anyone in your management chain.</p>' + '</span>'        
+      .html(
+        '<span class="instruction_emphasis">Personal Information:</span><br>' +
+        '<span style="text-align:left; font-size:0.7em;"><p>This waiver is intended to give you informed consent regarding your participation in this project and also to protect your personally identifiable information by not asking for specific details, such as your name. By clicking “I agree” at the end of this form, you are agreeing that you’ve had time to read and consider this consent waiver and are comfortable with what is being asked of you as a participant. Aside from your Mechanical Turk ID, no personal information will be collected during this study. Your Mechanical Turk ID will not be shared outside of Microsoft Research and the confines of this study without your permission, and will be promptly deleted after compensation has been successfully provided (30 days or less). De-identified data may be used for future research or given to another investigator for future use without additional consent (cont.).</p></span>'        
+      )
+      .on('touchstart', function() {    
+        d3.event.preventDefault(); 
+      });    
+      
+      d3.select('#consent_div')
+      .style('visibility','visible');
+
+    break;
+
+    case 3:
+
+      consent_content_div.append('span')
+      .attr('class','consent_text')
+      .html(
+        '<span class="instruction_emphasis">Personal Information (cont.):</span><br>' +
+        '<span style="text-align:left; font-size:0.7em;"><p>If you wish to review or copy any personal information you provided during the study, or if you want us to delete or correct any such data, email your request to the research team at <a href="mailto:ssuri0@outlook.com" target="_blank">ssuri0@outlook.com</a>. If you have a privacy concern, complaint, or a question for the Chief Privacy Officer/Data Protection Officer of Microsoft, please contact us by using our <a href="https://go.microsoft.com/fwlink/?LinkId=321116" target="_blank">Web form</a>). We will respond to questions or concerns within 30 days. For additional information on how Microsoft handles your personal information, please see the <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank">Microsoft Privacy Statement</a>).</p></span>'    
       )
       .on('touchstart', function() {    
         d3.event.preventDefault(); 
@@ -101,12 +99,64 @@ function consent (scene) {
     break;
 
     case 4:
+
+      consent_content_div.append('span')
+      .attr('class','consent_text')
+      .html(
+        '<span class="instruction_emphasis">Research Results & Feedback:</span><br>' +
+        '<span style="text-align:left; font-size:0.7em;"><p>Microsoft will own all of the research data and analysis and other results (collectively “Research Results”) generated from the information you provide and your participation in the research project. You may also provide suggestions, comments or other feedback (“Feedback”) to Microsoft with respect to the research project. Feedback is entirely voluntary, and Microsoft shall be free to use, disclose, reproduce, license, or otherwise distribute, and leverage the Feedback and Research Results.</p></span>'    
+      )
+      .on('touchstart', function() {    
+        d3.event.preventDefault(); 
+      });    
+      
+      d3.select('#consent_div')
+      .style('visibility','visible');
+
+    break;
+
+    case 5:
+
+      consent_content_div.append('span')
+      .attr('class','consent_text')
+      .html(
+        '<span class="instruction_emphasis">Benefits and Risks:</span><br>' +
+        '<span style="text-align:left; font-size:0.7em;"><p><span class="instruction_emphasis">Benefits</span>: The research team expects to better understand the perception of statistical charts on mobile phones. You will receive the specified payment after completing the HIT as well as any public benefit that may come these Research Results being shared with the greater scientific community.</p></span>' +
+        '<span style="text-align:left; font-size:0.7em;"><p><span class="instruction_emphasis">Risks</span>: During your participation, you may experience risk that should not be any more significant than the risks you experience in your regular daily routine. (cont.)</p></span>'        
+      )
+      .on('touchstart', function() {    
+        d3.event.preventDefault(); 
+      });    
+      
+      d3.select('#consent_div')
+      .style('visibility','visible');
+
+    break;
+
+    case 6:
+
+      consent_content_div.append('span')
+      .attr('class','consent_text')
+      .html(
+        '<span class="instruction_emphasis">Benefits and Risks (cont.):</span><br>' +
+        '<span style="text-align:left; font-size:0.7em;"><p>You accept the risks described on the previous page and whatever consequences may come of those risks, however unlikely, unless caused by our negligence or intentional misconduct. You hereby release Microsoft and its affiliates from any claim you may have now or in the future arising from such risks or consequences. In addition, you agree that Microsoft will not be liable for any loss, damages or injuries that may come of improper use of the study prototype, equipment, facilities, or any other deviations from the instructions provided by the research team. Don’t participate in this study if you feel you may not be able to safely participate in any way including due to any physical or mental illness, condition or limitation. You agree to immediately notify the research team of any incident or issue or unanticipated risk or incident.</p></span>'        
+      )
+      .on('touchstart', function() {    
+        d3.event.preventDefault(); 
+      });    
+      
+      d3.select('#consent_div')
+      .style('visibility','visible');
+
+    break;    
+
+    case 7:
     
       consent_content_div.append('span')
       .attr('class','consent_text')
       .html(         
         '<span class="instruction_emphasis">Your Authority to Participate:</span><br>' +
-        '<span style="text-align:left; font-size:0.7em;"><p>You represent that you have the full right and authority to agree to this statement, and if you are a minor that you have the consent (as indicated below) of your legal guardian to sign and acknowledge this form. You assume the full risk of any injuries, damages, or losses you may sustain as a result of your participation in the project. In addition, you agree to release and hold harmless Microsoft and its affiliates from any and all claims that you may have now or in the future related to or arising from your participation in the research project, and you hereby waive all such claims. Microsoft will not be liable for any damages related to your participation in the project. By agreeing below, you confirm that you understand what the project is about and how and why it is being done. Should you have any questions concerning this project, please contact the supervising researcher, Bongshin Lee (bongshin@microsoft.com).</p></span>' + '<span style="text-align:left; font-size:0.9em;"><p>Please confirm your acceptance by tapping the "<span class="instruction_emphasis">I AGREE</span>" button below.</p></span>'        
+        '<span style="text-align:left; font-size:0.7em;"><p>You represent that you have the full right and authority to sign this form, and if you are a minor that you have the consent (as indicated below) of your legal guardian to sign and acknowledge this form. By clicking “I agree” below, you confirm that you understand the purpose of the project and how it will be conducted and consent to participate on the terms set forth above. Should you have any questions concerning this project, please contact <a href="mailto:mabrehme@microsoft.com" target="_blank">mabrehme@microsoft.com</a>. Please confirm your acceptance by clicking “I agree” below. Upon request, a copy of this consent form will be provided to you for your records. On behalf of Microsoft, we thank you for your contribution and look forward to your research session.</p></span>' + '<span style="text-align:left; font-size:0.7em;"><p>Do you understand and consent to these terms?</p></span>'        
       )
       .on('touchstart', function() {    
         d3.event.preventDefault(); 
@@ -140,8 +190,8 @@ function consent (scene) {
   .attr('class', 'menu_btn_enabled')
   .attr('id','submit_btn')
   .attr('type','button')
-  .attr('value', scene == 4 ? 'I AGREE' : 'NEXT')
-  .attr('title', scene == 4 ? 'I AGREE' : 'NEXT')
+  .attr('value', scene == 7 ? 'I AGREE' : 'NEXT')
+  .attr('title', scene == 7 ? 'I AGREE' : 'NEXT')
   .on('touchstart', function() {    
 
     d3.event.preventDefault();  
