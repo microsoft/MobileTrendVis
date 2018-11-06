@@ -1,4 +1,5 @@
 var d3 = require("d3");
+var io = require('socket.io-client');
 var preLoader = require('pre-loader');
 var globals = require("./globals");
 var initTasks = require("./initTasks");
@@ -8,7 +9,43 @@ var introduction = require("./introduction");
 var questionnaire = require("./questionnaire");
 var trial = require("./trial");
 var countrySelector = require("./countrySelector");
-var menu = require("./menu");     
+var menu = require("./menu");    
+globals.userID = 'MT_Pilot_' + new Date().valueOf();
+
+if (window.location.href.indexOf('mobubble') == -1) {  
+
+  if (window.location.href.indexOf('localhost') == -1) {
+    var socket = io.connect({
+      transports: ['websocket'],
+      reconnect: true,
+      secure: true
+    });
+  }
+  else {
+    var socket = io.connect({
+      transports: ['websocket'],
+      reconnect: true
+    });
+  }
+  
+  socket.on('visitor', function(msg) {
+    console.log(msg);
+    if (msg.userID == globals.userID) {
+      globals.visitor_number = msg.count;
+      console.log({'visitor_number': globals.visitor_number});
+      initTasks();
+      loadMenu();
+    }
+  });
+  
+  socket.on('hello_from_server', function(msg) {
+    console.log(msg);
+  });
+}
+else {
+  initTasks();
+}
+
 
 function setCookie (c_name, value, exdays)
 {
@@ -71,15 +108,6 @@ appInsights.queue.push(function () {
 
 non_interactive = true;
 
-
-initTasks();
-
-appInsights.trackEvent("InitTasks", { 
-  "TimeStamp": new Date().valueOf(),
-  "Event": "InitTasks",
-  "user_id": globals.userID
-}); 
-
 window.addEventListener('load', function() { 
 
   imagesArray = [
@@ -114,7 +142,7 @@ window.addEventListener('load', function() {
     },
     onComplete: function(loaded, errors){
         // fires when whole list is done. cache is primed.
-        console.log('assets loaded:', loaded);
+        // console.log('assets loaded:', loaded);
         // imageContainer.style.display = 'block';
         if (errors){
             console.log('the following failed', errors);
@@ -125,7 +153,6 @@ window.addEventListener('load', function() {
   resumptions = [];
   globals.selection_tilt_array = [];
   globals.time_tilt_array = [];
-  globals.userID = 'Dev_' + new Date().valueOf();
   globals.last_pause = new Date().valueOf();
   
   appInsights.trackPageView('index.html');  
@@ -497,65 +524,65 @@ function tiltHandler(event) {
               chart_instance.current_year(year + Math.sign(tilt_time) * scale_tilt_time(Math.abs(tilt_time)));
             }    
           }    
-          var bubble_ind;
-          if (chart_instance.current_year() > 1981 && chart_instance.current_year() < 1989) {
-            if (chart_instance.bubbleset_points().indexOf('SAU') == -1) {
-              chart_instance.bubbleset_points().push("SAU");              
-            }
-            d3.select('#annotation_div').style('display',null);
-            d3.select('#annotation_div').select('.annotation')
-            .html('Notice the rise and fall of Saudi Arabia\'s GDP during the mid 1980s.');
-            d3.selectAll('.carousel_item').style('display','none');       
-            d3.selectAll('.carousel_clutch').style('display','none'); 
-          }   
-          else if (chart_instance.current_year() > 1990 && chart_instance.current_year() < 2000) {
-            if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }
-            if (chart_instance.bubbleset_points().indexOf('RWA') == -1) {
-              chart_instance.bubbleset_points().push("RWA");              
-            }
-            if (chart_instance.bubbleset_points().indexOf('GMB') == -1) {
-              chart_instance.bubbleset_points().push("GMB");              
-            }
-            if (chart_instance.bubbleset_points().indexOf('LBR') == -1) {
-              chart_instance.bubbleset_points().push("LBR");              
-            }
-            if (chart_instance.bubbleset_points().indexOf('ZAF') == -1) {
-              chart_instance.bubbleset_points().push("ZAF");              
-            }            
-            d3.select('#annotation_div').style('display',null);
-            d3.select('#annotation_div').select('.annotation')
-            .html('Notice how the African nations diverge from one another during the 1990s.');
-            d3.selectAll('.carousel_item').style('display','none');       
-            d3.selectAll('.carousel_clutch').style('display','none'); 
-          }
-          else {
-            if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }
-            if (chart_instance.bubbleset_points().indexOf('RWA') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('RWA');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }
-            if (chart_instance.bubbleset_points().indexOf('GMB') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('GMB');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }
-            if (chart_instance.bubbleset_points().indexOf('LBR') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('LBR');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }
-            if (chart_instance.bubbleset_points().indexOf('ZAF') != -1) {
-              bubble_ind = chart_instance.bubbleset_points().indexOf('ZAF');
-              chart_instance.bubbleset_points().splice(bubble_ind,1); 
-            }            
-            d3.select('#annotation_div').style('display','none');
-            d3.select('#annotation_div').select('.annotation')
-            .html('');
-          }
+          // var bubble_ind;
+          // if (chart_instance.current_year() > 1981 && chart_instance.current_year() < 1989) {
+          //   if (chart_instance.bubbleset_points().indexOf('SAU') == -1) {
+          //     chart_instance.bubbleset_points().push("SAU");              
+          //   }
+          //   d3.select('#annotation_div').style('display',null);
+          //   d3.select('#annotation_div').select('.annotation')
+          //   .html('Notice the rise and fall of Saudi Arabia\'s GDP during the mid 1980s.');
+          //   d3.selectAll('.carousel_item').style('display','none');       
+          //   d3.selectAll('.carousel_clutch').style('display','none'); 
+          // }   
+          // else if (chart_instance.current_year() > 1990 && chart_instance.current_year() < 2000) {
+          //   if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('RWA') == -1) {
+          //     chart_instance.bubbleset_points().push("RWA");              
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('GMB') == -1) {
+          //     chart_instance.bubbleset_points().push("GMB");              
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('LBR') == -1) {
+          //     chart_instance.bubbleset_points().push("LBR");              
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('ZAF') == -1) {
+          //     chart_instance.bubbleset_points().push("ZAF");              
+          //   }            
+          //   d3.select('#annotation_div').style('display',null);
+          //   d3.select('#annotation_div').select('.annotation')
+          //   .html('Notice how the African nations diverge from one another during the 1990s.');
+          //   d3.selectAll('.carousel_item').style('display','none');       
+          //   d3.selectAll('.carousel_clutch').style('display','none'); 
+          // }
+          // else {
+          //   if (chart_instance.bubbleset_points().indexOf('SAU') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('SAU');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('RWA') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('RWA');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('GMB') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('GMB');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('LBR') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('LBR');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }
+          //   if (chart_instance.bubbleset_points().indexOf('ZAF') != -1) {
+          //     bubble_ind = chart_instance.bubbleset_points().indexOf('ZAF');
+          //     chart_instance.bubbleset_points().splice(bubble_ind,1); 
+          //   }            
+          //   d3.select('#annotation_div').style('display','none');
+          //   d3.select('#annotation_div').select('.annotation')
+          //   .html('');
+          // }
           chart_g.call(chart_instance);  
         }    
   
@@ -659,7 +686,7 @@ d3.select("body")
           "user_id": globals.userID
         });
         if (window.location.href.indexOf('mobubble') == -1){
-          loadMenu();
+          socket.emit('userID', globals.userID);
         }
         else {
           loadSandbox();
@@ -678,7 +705,7 @@ d3.select("body")
           "user_id": globals.userID
         });
         if (window.location.href.indexOf('mobubble') == -1){
-          loadMenu();
+          socket.emit('userID', globals.userID);
         }     
         else {
           loadSandbox();
@@ -834,7 +861,7 @@ loadMenu = function () {
   //   "user_id": globals.userID
   // });
   if (window.location.href.indexOf('mobubble') == -1){
-    loadMenu();
+    socket.emit('userID', globals.userID);
   }
   else {
     loadSandbox(); 
@@ -848,7 +875,7 @@ loadMenu = function () {
     "user_id": globals.userID
   });
   if (window.location.href.indexOf('mobubble') == -1){
-    loadMenu();
+    socket.emit('userID', globals.userID);
   }
   else {
     loadSandbox();

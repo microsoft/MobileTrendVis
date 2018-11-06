@@ -124,7 +124,6 @@ d3.carousel = function () {
         d3.select('.carousel_clutch').selectAll('text')
         .style('fill','gold');
         d3.selectAll('.carousel_item').style('display','inline');
-        d3.selectAll('.carousel_pin').style('display','inline');
       }
 
       function clutchEnd() {
@@ -155,55 +154,29 @@ d3.carousel = function () {
       .attr('transform','translate('+ (svg_width - 2 - 0.5 * focus_height) + ',' + (svg_height / 2) +')rotate(-45)');
 
       clutch.exit()
-      .remove();
-
-      var pin = this_carousel.selectAll('.carousel_pin')
-      .data([null]);      
-      
-      var pin_enter = pin.enter()
-      .append('g')
-      .style('display','none')
-      .attr('class','carousel_pin');
-
-      pin_enter.append('rect')
-      .attr('class','pin_enabled')
-      .attr('rx',5)
-      .attr('ry',5)
-      .style('margin', '2px')
-      .style('fill','url(#grad1)')
-      .on('touchstart',pinDown)
-      .on('touchend',pinEnd);  
-
-      pin_enter.append('text')
-      .text('+')
-      .attr('id','pin_icon')
-      .attr('class','pin_text')
-      .attr('text-anchor', "middle")
-      .attr('alignment-baseline','middle')      
-      .on('touchstart',pinDown)
-      .on('touchend',pinEnd);
+      .remove();      
 
       var highlight_points = chart_instance.highlight_points();
       focus_element = highlight_points[carousel_focus];      
 
-      function pinDown() {
+      function pinDown(item) {
         d3.event.preventDefault();
         d3.event.stopPropagation();
         carousel_touching = true;
         touching = false;     
-        console.log(focus_element);
-        if (chart_instance.bubbleset_points().indexOf(focus_element) == -1) {
-          chart_instance.bubbleset_points().push(focus_element);
-          // var outside_ind = chart_instance.outside_points().indexOf(focus_element);
+        console.log(item);
+        if (chart_instance.bubbleset_points().indexOf(item) == -1) {
+          chart_instance.bubbleset_points().push(item);
+          d3.select('#carousel_item_' + item).select('rect')
+          .style('stroke','gold');
+          // var outside_ind = chart_instance.outside_points().indexOf(item);
           // chart_instance.outside_points().splice(outside_ind,1);
-          chart_g.call(chart_instance);
-          d3.select('.pin_enabled').attr('class','pin_active');
-          d3.select('.pin_text').attr('class','pin_text_active')
-          .text('x');
+          chart_g.call(chart_instance);          
         }
         else {
-          var bubble_ind = chart_instance.bubbleset_points().indexOf(focus_element);
+          var bubble_ind = chart_instance.bubbleset_points().indexOf(item);
           chart_instance.bubbleset_points().splice(bubble_ind,1);  
+          d3.select('#carousel_item_' + item).select('rect').style('stroke','#fff');
           chart_g.call(chart_instance);      
           var updated_highlight_points = chart_instance.highlight_points();
           carousel_g.datum(updated_highlight_points);
@@ -215,7 +188,6 @@ d3.carousel = function () {
           var bubbleset_points = chart_instance.bubbleset_points();
           if (bubbleset_points.length == 0 && updated_highlight_points.length == 0) {
             d3.selectAll('.carousel_item').style('display','none');       
-            d3.selectAll('.carousel_pin').style('display','none');             
             d3.selectAll('.carousel_clutch').style('display','none');           
           }
         } 
@@ -226,35 +198,9 @@ d3.carousel = function () {
         d3.event.stopPropagation();
         carousel_touching = false;
         touching = false;       
-        d3.selectAll('.carousel_pin').style('display','none');
         d3.selectAll('.carousel_item').style('display','none');
-      }
-
-      var pin_update = pin;
+      }   
       
-      pin_update.attr('transform','translate('+ (svg_width / 2 + (focus_height - 4) + 6) + ',' + (center_y - (focus_height * 0.5) - 2) +')');
-           
-
-      pin_update.select('rect')
-      .attr('width',focus_height - 4)
-      .attr('height',focus_height - 4)
-      .attr('class',function(){        
-        return (chart_instance.bubbleset_points().indexOf(focus_element) == -1) ? 'pin_enabled' : 'pin_active';
-      });      
-
-      pin_update.select('text')
-      .attr('x',(focus_height - 4) / 2)
-      .attr('y',(focus_height - 4) / 2)
-      .attr('class',function(){        
-        return (chart_instance.bubbleset_points().indexOf(focus_element) == -1) ? 'pin_text' : 'pin_text_active';
-      })
-      .text(function(){  
-        return (chart_instance.bubbleset_points().indexOf(focus_element) == -1) ? '+' : 'x';
-      });      
-
-      pin.exit()
-      .remove();
-
       function position(item) {
 
         var item_transition = item.transition()
@@ -306,17 +252,9 @@ d3.carousel = function () {
         })
         .style('opacity',function(d,i){
           var dist_from_focus = Math.abs(i - carousel_focus);
-          return 0.75 * (1 - (dist_from_focus * 0.25));
+          return 1 * (1 - (dist_from_focus * 0.25));
         })        
-        .attr('stroke', function(d,i){
-          var dist_from_focus = Math.abs(i - carousel_focus);
-          if (dist_from_focus == 0) {            
-            return '#fff';
-          }
-          else {
-            return '#ccc';
-          }
-        });
+        .attr('stroke', '#fff');
 
         item_transition.select('.carousel_text')    
         .attr('y', function(d,i){
@@ -391,15 +329,7 @@ d3.carousel = function () {
       .attr('id',function(d){
         return d + '_bttn';
       })
-      .attr('stroke', function(d,i){
-        var dist_from_focus = Math.abs(i - carousel_focus);
-        if (dist_from_focus == 0) {            
-          return '#fff';
-        }
-        else {
-          return '#ccc';
-        }
-      })
+      .attr('stroke', '#fff')
       .style('stroke-width','2px')
       .style('fill',function(d){
         return d3.select('.circle_mark_' + d).style('fill');
@@ -422,7 +352,11 @@ d3.carousel = function () {
       .style('opacity',function(d,i){
         var dist_from_focus = Math.abs(i - carousel_focus);
         return 0.75 * (1 - (dist_from_focus * 0.25));
-      });
+      })
+      .on('touchstart', function(d){
+        pinDown(d);
+      })
+      .on('touchend', pinEnd);
 
       carousel_item_enter.append('text')
       .style('font-size','0em')
@@ -452,7 +386,11 @@ d3.carousel = function () {
       .style('opacity',function(d,i){
         var dist_from_focus = Math.abs(i - carousel_focus);
         return 0.75 * (1 - (dist_from_focus * 0.25));
-      });      
+      })
+      .on('touchstart', function(d){
+        pinDown(d);
+      })
+      .on('touchend', pinEnd);  
 
       //carousel item exit
 

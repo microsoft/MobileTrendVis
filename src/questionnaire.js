@@ -67,7 +67,7 @@ function questionnaire (scene) {
 
     case 1:
     
-      instruction_text.html('1. Prior to this experiment, how <span class="instruction_emphasis">familiar</span> were you with the type of chart used in this experiment on a scale ranging from <span class="instruction_emphasis">1</span> (not familair at all) to <span class="instruction_emphasis">5</span> (very familiar)?');    
+      instruction_text.html('1. Prior to this experiment, how <span class="instruction_emphasis">familiar</span> were you with the type of chart used in this experiment on a scale ranging from <span class="instruction_emphasis">1</span> (not familiar at all) to <span class="instruction_emphasis">5</span> (very familiar)?');    
 
       var familiarity = 0;
 

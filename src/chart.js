@@ -2,6 +2,7 @@ var d3 = require("d3");
 var flubber = require("flubber");
 var globals = require("./globals");
 var circlefit = require("./circlefit");
+var annotationList = require("./data/annotationList");
 
 d3.chart = function () {  
 
@@ -61,7 +62,9 @@ d3.chart = function () {
       thousand_format = d3.format(".2s"),
       touch_counter = 0,
       last_touch = new Date(),
-      touch_points = [];
+      touch_points = [],
+      caption_text = "",
+      annotation_points = [];
 
   function chart (selection) {
     selection.each(function (data){
@@ -848,7 +851,7 @@ d3.chart = function () {
         };
       }
 
-      function displayYear(year) {
+      function displayYear(year) {        
        
         var progress =  ((year + 1) - params.yearMin) / ((params.yearMax + 1) - params.yearMin);
         if (globals.outer_progress_circle != undefined) {
@@ -877,11 +880,53 @@ d3.chart = function () {
 
         /** 
          * 
-         * BUBBLESET INTERACTION 
+         * BUBBLESET + ANNOTATIONS 
          * 
         **/
       
-        if (!non_interactive) {          
+        if (!non_interactive) {       
+          
+          var active_caption = false;
+                    
+          annotationList.forEach(function(d,i){
+            if (d.x == params.x && d.y == params.y && current_year >= d.yearStart && current_year <= d.yearEnd) {
+              if (d.caption != caption_text) {
+                caption_text = d.caption;
+                annotation_points = d.annotation_points;
+                annotation_points.forEach(function(b){
+                  if (bubbleset_points.indexOf(b) == -1) {
+                    bubbleset_points.push(b);        
+                    d3.select('#carousel_item_' + b).select('rect')
+                    .style('stroke','gold');      
+                  }
+                });    
+              }
+              active_caption = true;                        
+            }            
+            if (i == annotationList.length - 1 && !active_caption) {
+              caption_text = '';
+              annotation_points.forEach(function(b){
+                bubbleset_points.splice(bubbleset_points.indexOf(b),1);       
+                d3.select('#carousel_item_' + b).select('rect')
+                .style('stroke','#fff');         
+              });
+              annotation_points = [];
+              active_caption = false;
+            }
+               
+          });
+
+          if (caption_text != "") {
+            d3.select('#annotation_div').select('.annotation')
+            .html(caption_text);    
+            
+            d3.select('#annotation_div').style('display',null);
+            d3.selectAll('.carousel_item').style('display','none');       
+            d3.selectAll('.carousel_clutch').style('display','none');
+          }
+          else {
+            d3.select('#annotation_div').style('display','none');    
+          }
 
           // console.log({
           //   'bubbleset_points': bubbleset_points,
@@ -1989,6 +2034,7 @@ d3.chart = function () {
       }
 
       function updateCarousel() {
+
         if (window.location.href.indexOf('mobubble') != -1) { 
           carousel_g.datum(highlight_points);
           carousel_instance.carousel_focus(Math.floor((highlight_points.length - 1) / 2));
@@ -1996,19 +2042,24 @@ d3.chart = function () {
           setTimeout(function(){
             carousel_g.call(carousel_instance);
           }, 275);
-          d3.select('#annotation_div').style('display','none');
-          if (highlight_points.length > 0) {
-            d3.selectAll('.carousel_item').style('display','inline');       
-            d3.selectAll('.carousel_clutch').style('display','inline');             
+          if (caption_text != "") {
+            d3.select('#annotation_div').style('display',null);            
+            d3.selectAll('.carousel_item').style('display','none');       
+            d3.selectAll('.carousel_clutch').style('display','none');
+          }
+          else {
+            d3.select('#annotation_div').style('display','none');            
+            if (highlight_points.length > 0) {
+              d3.selectAll('.carousel_item').style('display','inline');       
+              d3.selectAll('.carousel_clutch').style('display','inline');             
+            }
           }
         }
       }
 
       function hideCarousel() {
         d3.selectAll('.carousel_item').style('display','none');       
-        d3.selectAll('.carousel_pin').style('display','none'); 
-        d3.select('#annotation_div').style('display','none');
-        if (highlight_points.length > 0) {
+        if (highlight_points.length > 0 && caption_text == "") {
           d3.selectAll('.carousel_clutch').style('display','inline'); 
         }
         else {
@@ -2429,6 +2480,24 @@ d3.chart = function () {
       return loop_count;
     }
     loop_count = x;
+    return chart;
+  };
+
+  //getter / setter for caption_text
+  chart.caption_text = function (x) {
+    if (!arguments.length) {
+      return caption_text;
+    }
+    caption_text = x;
+    return chart;
+  };
+
+  //getter / setter for annotation_points
+  chart.annotation_points = function (x) {
+    if (!arguments.length) {
+      return annotation_points;
+    }
+    annotation_points = x;
     return chart;
   };
  

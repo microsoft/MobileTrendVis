@@ -42,6 +42,8 @@ var globals = {
   tilt_counter: u,
   trial_index: u,
   max_trials: u,
+  ordering: u,
+  visitor_number: u,
   trials: u,
   trial_response: u,
   condition: u,
@@ -71,6 +73,9 @@ time_tilt_enabled = false;
 touch_value = null;
 trial_index = -1;
 max_trials = 0;
+ordering = -1;
+visitor_number = -1;
+userID = -1;
 last_tilt = new Date();
 tilt_counter = 0;
 tps = 0;

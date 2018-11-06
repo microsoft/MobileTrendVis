@@ -6,4 +6,3 @@ bash.exe.stackdump
 package-lock.json
 data_generation/.Rproj.user/*
 .Rproj.user
-.gitattributes

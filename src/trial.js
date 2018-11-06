@@ -165,6 +165,7 @@ function trial () {
       //init next trial
       trial = {
         user_id: globals.userID,
+        ordering: globals.ordering,
         trial_index: globals.trial_index,
         condition: globals.condition,
         task_index: globals.trials[globals.trial_index].task_index,
