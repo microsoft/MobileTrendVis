@@ -6,7 +6,7 @@ var taskList = [
 	// 		"y": "GDP Per Capita",
 	// 		"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["Norway"],
+	// 		"correct_responses": ["J"],
 	// 		"yearMin": 1980,
 	// 		"yearMax": 2000,
 	// 		"tutorial": true,
@@ -18,7 +18,7 @@ var taskList = [
 	// 		"y": "GDP Per Capita",
 	// 		"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 	// 		"num_responses": 3,
-	// 		"correct_responses": ["Denmark","Iceland","Norway","Sweden","United States","Australia"],
+	// 		"correct_responses": ["C","G","J","N","O","A"],
 	// 		"yearMin": 1985,
 	// 		"yearMax": 2000,
 	// 		"tutorial": true,
@@ -30,7 +30,7 @@ var taskList = [
 	// 		"y": "Life Expectancy",
 	// 		"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["Hungary"],
+	// 		"correct_responses": ["E"],
 	// 		"yearMin": 1985,
 	// 		"yearMax": 2000,
 	// 		"tutorial": true,
@@ -42,7 +42,7 @@ var taskList = [
 	// 		"y": "GDP Per Capita",
 	// 		"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 	// 		"num_responses": 2,
-	// 		"correct_responses": ["India","China"],
+	// 		"correct_responses": ["F","B"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -54,7 +54,7 @@ var taskList = [
 	// 		"y": "Indexed GDP",
 	// 		"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 	// 		"num_responses": 2,
-	// 		"correct_responses": ["India","China"],
+	// 		"correct_responses": ["F","B"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -66,7 +66,7 @@ var taskList = [
 	// 		"y": "GDP Per Capita",
 	// 		"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 	// 		"num_responses": 3,
-	// 		"correct_responses": ["Gambia","Liberia","Rwanda"],
+	// 		"correct_responses": ["D","I","L"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -78,7 +78,7 @@ var taskList = [
 	// 		"y": "Infant Mortality",
 	// 		"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["Hungary"],
+	// 		"correct_responses": ["E"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -90,7 +90,7 @@ var taskList = [
 	// 		"y": "Infant Mortality",
 	// 		"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 	// 		"num_responses": 2,
-	// 		"correct_responses": ["Liberia","Rwanda"],
+	// 		"correct_responses": ["I","L"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -102,7 +102,7 @@ var taskList = [
 	// 		"y": "Infant Mortality",
 	// 		"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 	// 		"num_responses": 2,
-	// 		"correct_responses": ["Gambia","Saudi Arabia"],
+	// 		"correct_responses": ["D","M"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -114,7 +114,7 @@ var taskList = [
 	// 		"y": "Indexed Population",
 	// 		"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 	// 		"num_responses": 2,
-	// 		"correct_responses": ["India","China"],
+	// 		"correct_responses": ["F","B"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -126,7 +126,7 @@ var taskList = [
 	// 		"y": "Life Expectancy (Men)",
 	// 		"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["Liberia","Rwanda"],
+	// 		"correct_responses": ["I","L"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -138,7 +138,7 @@ var taskList = [
 	// 		"y": "Population",
 	// 		"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["United States"],
+	// 		"correct_responses": ["O"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -150,7 +150,7 @@ var taskList = [
 	// 		"y": "Population",
 	// 		"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 	// 		"num_responses": 1,
-	// 		"correct_responses": ["Australia"],
+	// 		"correct_responses": ["A"],
 	// 		"yearMin": 1975,
 	// 		"yearMax": 2000,
 	// 		"tutorial": false,
@@ -165,7 +165,7 @@ var taskList = [
 			"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Norway"
+				"J"
 			],
 			"yearMin": 1980,
 			"yearMax": 2000,
@@ -179,12 +179,12 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Denmark",
-				"Iceland",
-				"Norway",
-				"Sweden",
-				"United States",
-				"Australia"
+				"C",
+				"G",
+				"J",
+				"N",
+				"O",
+				"A"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -198,7 +198,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -212,8 +212,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -227,8 +227,8 @@ var taskList = [
 			"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -242,7 +242,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -256,7 +256,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Australia"
+				"A"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -270,8 +270,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -285,7 +285,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 			"num_responses": 1,
 			"correct_responses": [
-				"United States"
+				"O"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -299,9 +299,9 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Gambia",
-				"Liberia",
-				"Rwanda"
+				"D",
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -315,8 +315,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -330,8 +330,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Gambia",
-				"Saudi Arabia"
+				"D",
+				"M"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -345,8 +345,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -362,7 +362,7 @@ var taskList = [
 			"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Norway"
+				"J"
 			],
 			"yearMin": 1980,
 			"yearMax": 2000,
@@ -376,12 +376,12 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Denmark",
-				"Iceland",
-				"Norway",
-				"Sweden",
-				"United States",
-				"Australia"
+				"C",
+				"G",
+				"J",
+				"N",
+				"O",
+				"A"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -395,7 +395,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -409,7 +409,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -423,8 +423,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -438,8 +438,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -453,7 +453,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Australia"
+				"A"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -467,9 +467,9 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Gambia",
-				"Liberia",
-				"Rwanda"
+				"D",
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -483,7 +483,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 			"num_responses": 1,
 			"correct_responses": [
-				"United States"
+				"O"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -497,8 +497,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -512,8 +512,8 @@ var taskList = [
 			"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -527,8 +527,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Gambia",
-				"Saudi Arabia"
+				"D",
+				"M"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -542,8 +542,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -559,7 +559,7 @@ var taskList = [
 			"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Norway"
+				"J"
 			],
 			"yearMin": 1980,
 			"yearMax": 2000,
@@ -573,12 +573,12 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Denmark",
-				"Iceland",
-				"Norway",
-				"Sweden",
-				"United States",
-				"Australia"
+				"C",
+				"G",
+				"J",
+				"N",
+				"O",
+				"A"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -592,7 +592,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -606,8 +606,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -621,8 +621,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -636,8 +636,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Gambia",
-				"Saudi Arabia"
+				"D",
+				"M"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -651,7 +651,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Australia"
+				"A"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -665,7 +665,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -679,8 +679,8 @@ var taskList = [
 			"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -694,8 +694,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -709,9 +709,9 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Gambia",
-				"Liberia",
-				"Rwanda"
+				"D",
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -725,7 +725,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 			"num_responses": 1,
 			"correct_responses": [
-				"United States"
+				"O"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -739,8 +739,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -756,7 +756,7 @@ var taskList = [
 			"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Norway"
+				"J"
 			],
 			"yearMin": 1980,
 			"yearMax": 2000,
@@ -770,12 +770,12 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Denmark",
-				"Iceland",
-				"Norway",
-				"Sweden",
-				"United States",
-				"Australia"
+				"C",
+				"G",
+				"J",
+				"N",
+				"O",
+				"A"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -789,7 +789,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -803,8 +803,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -818,7 +818,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 			"num_responses": 1,
 			"correct_responses": [
-				"United States"
+				"O"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -832,8 +832,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Gambia",
-				"Saudi Arabia"
+				"D",
+				"M"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -847,8 +847,8 @@ var taskList = [
 			"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -862,8 +862,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -877,7 +877,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -891,9 +891,9 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Gambia",
-				"Liberia",
-				"Rwanda"
+				"D",
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -907,8 +907,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -922,8 +922,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -937,7 +937,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Australia"
+				"A"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -953,7 +953,7 @@ var taskList = [
 			"prompt": "Select the country that had the largest change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Norway"
+				"J"
 			],
 			"yearMin": 1980,
 			"yearMax": 2000,
@@ -967,12 +967,12 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries with rapid growth in the <span class='instruction_emphasis'>Number of Personal Computers</span> between 1985 and 2000.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Denmark",
-				"Iceland",
-				"Norway",
-				"Sweden",
-				"United States",
-				"Australia"
+				"C",
+				"G",
+				"J",
+				"N",
+				"O",
+				"A"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -986,7 +986,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> foo country with little growth in the <span class='instruction_emphasis'>Number of Personal Computers</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1985,
 			"yearMax": 2000,
@@ -1000,8 +1000,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country where <span class='instruction_emphasis'>Life Expectancy</span> (<span class='instruction_emphasis'>Women</span> & <span class='instruction_emphasis'>Men</span>) increased first and decreased later.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1015,9 +1015,9 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>three</span> countries that had little change in <span class='instruction_emphasis'>GDP Per Capita</span>.",
 			"num_responses": 3,
 			"correct_responses": [
-				"Gambia",
-				"Liberia",
-				"Rwanda"
+				"D",
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1031,8 +1031,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased the most.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Gambia",
-				"Saudi Arabia"
+				"D",
+				"M"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1046,8 +1046,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Population</span> grew faster than their <span class='instruction_emphasis'>Indexed Energy Consumption</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1061,8 +1061,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Infant Mortality</span> rate decreased first, then increased later.",
 			"num_responses": 2,
 			"correct_responses": [
-				"Liberia",
-				"Rwanda"
+				"I",
+				"L"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1076,8 +1076,8 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>two</span> countries whose <span class='instruction_emphasis'>Indexed Energy Consumption</span> grew faster than their <span class='instruction_emphasis'>Indexed GDP</span>.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1091,7 +1091,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country with a decreasing <span class='instruction_emphasis'>Infant Mortality</span> rate, but little change in <span class='instruction_emphasis'>Life Expectancy</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Hungary"
+				"E"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1105,7 +1105,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had a decrease in <span class='instruction_emphasis'>Arable Area</span>, even as their <span class='instruction_emphasis'>Population</span> increased.",
 			"num_responses": 1,
 			"correct_responses": [
-				"United States"
+				"O"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1119,8 +1119,8 @@ var taskList = [
 			"prompt": "Select the <span class='instruction_number'>two</span> countries having the largest <span class='instruction_emphasis'>Population</span> in the year 2000.",
 			"num_responses": 2,
 			"correct_responses": [
-				"India",
-				"China"
+				"F",
+				"B"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
@@ -1134,7 +1134,7 @@ var taskList = [
 			"prompt": "Select <span class='instruction_number'>one</span> country that had an increase in <span class='instruction_emphasis'>Arable Area</span>, but only a slight increase in <span class='instruction_emphasis'>Population</span>.",
 			"num_responses": 1,
 			"correct_responses": [
-				"Australia"
+				"A"
 			],
 			"yearMin": 1975,
 			"yearMax": 2000,
