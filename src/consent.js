@@ -173,11 +173,15 @@ function consent (scene) {
       if (document.getElementById('consent_div') != undefined) {      
         document.getElementById('consent_div').remove(); 
       }
-      appInsights.trackEvent("ConsentComplete", { 
+
+      globals.log_message = { 
         "TimeStamp": new Date().valueOf(),
         "Event": "ConsentComplete",
         "user_id": globals.userID
-      });
+      };
+
+      console.log("ConsentComplete", globals.log_message);
+
       
       consent_complete = true;
       loadMenu();
@@ -201,12 +205,15 @@ function consent (scene) {
       document.getElementById('consent_div').remove(); 
     }
 
-    appInsights.trackEvent("Consent", { 
+    globals.log_message = { 
       "TimeStamp": new Date().valueOf(),
       "user_id": globals.userID,
       "Event": "Consent",
       "Scene": scene + 1
-    });
+    };
+
+    console.log("Consent", globals.log_message);
+
     consent(scene + 1);
   });
  

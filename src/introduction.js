@@ -18,18 +18,11 @@ function introduction (scene) {
   chart_instance = chart();
 
   all_data = nationData;  
-  if (non_interactive){
-    var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
-    codes = shuffle(codes);
-    all_data.forEach(function (d,i){ 
-      d.code = codes[i]; 
-    });
-  }
-  else {
-    all_data.forEach(function (d){ 
-      d.code = d.orig_code; 
-    });
-  }   
+  var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
+  codes = shuffle(codes);
+  all_data.forEach(function (d,i){ 
+    d.code = codes[i]; 
+  });
     
   function getDims() {
     height = window.innerHeight;
@@ -74,12 +67,14 @@ function introduction (scene) {
         d3.select('#introduction_div')
         .style('visibility','visible');
 
-        appInsights.trackEvent("IntroEvent", { 
+        globals.log_message = { 
           "TimeStamp": new Date().valueOf(),
           "user_id": globals.userID, 
           "Event": "IntroEvent",
           "EventType": "loadData", 
-        });
+        };
+
+        console.log("IntroEvent", globals.log_message);
 
         clearInterval(checkExist);
       }
@@ -230,7 +225,7 @@ function introduction (scene) {
         .html('<span style="text-align:left; font-size:0.8em;">12. In the experiment, you\'ll be asked to select one or more countries based on their characteristics.' + 
         '<br><br>In some cases, there may be more correct responses than required responses, and the order in which you select responses does not matter.' + 
         '<br><br>If you change your mind about a selection, tap it again to de-select it.' + 
-        '<br><br>Tap <span class="instruction_emphasis">NEXT</span> to respond to an example question.</span>');   
+        '<br><br>Tap <span class="instruction_emphasis">NEXT</span> to perform a practice trial.</span>');   
 
         d3.select('#main_svg').style('display','none');
         d3.select('#menubar').style('display','none');
@@ -284,23 +279,54 @@ function introduction (scene) {
 
         d3.select('#instruction_text').remove();
         d3.select('#intro_content_div').remove();
-
-        chart_instance.current_year(globals.condition == 'multiples' ? globals.param_yearMax : globals.param_yearMin);
-        chart_instance.loop_count(0);
-        update_outer_progress(1 / 25);
-        chart_g.call(chart_instance);
-
-        d3.select('.year_indicator').style('display',null);
-        d3.select('#instruction_div').style('display','none');
         d3.select('#submit_btn').style('display','none');
+        d3.select('#instruction_div').style('display','none');
+        d3.select('.year_indicator').style('display','none');
+        d3.selectAll('.mark').style('display','none');
+        d3.selectAll('.line').style('display','none');
         d3.select('#main_svg').style('display',null)        
-        .style('margin-top',0 + 'px');
-        d3.select('#menubar').style('display',null);
+        .style('margin-top',0 + 'px'); 
+        
+        d3.select('#introduction_div').append('div')
+        .attr('class', 'feedback_btn_enabled')
+        .style('border-color','transparent')
+        .style('top',(svg_dim + 5) + 'px')
+        .attr('id','start_btn')
+        .style('height','125px');
 
-        d3.select('.task_instruction_span')
-        .html((globals.condition != 'multiples' ? ' View <span class=\'instruction_emphasis\'>all years</span>, s' : 'S') + 'elect <span class="instruction_number">three</span> countries that are <span class="instruction_emphasis">labeled with VOWELS</span> using the buttons below, then tap \'DONE\'.');  
+        d3.select('#start_btn').append('span')
+        .attr('id','button_text')
+        .html('<span>Take note of the <span class="instruction_emphasis" style="color:gold;">two chart axes</span> above and this instruction:</span><br>' + (globals.condition != 'multiples' ? ' View <span class=\'instruction_emphasis\'>all years</span>, s' : 'S') + 'elect <span class="instruction_number">three</span> countries that are <span class="instruction_emphasis">labeled with VOWELS</span>.<br>' + '<span id="time_warning">You may proceed after <span class="instruction_emphasis">5 seconds</span>.</span>' + '<span id="time_delay_message"  style="display:none;">Tap on this message to start this <span class="instruction_emphasis">PRACTICE</span> trial.</span>'); 
 
-        countrySelector();        
+        setTimeout(function(){
+          // allow participant to proceed after 5s
+
+          d3.select('#time_warning')
+          .style('display','none');
+
+          d3.select('#time_delay_message')
+          .style('display',null);
+
+          d3.select('#start_btn')
+          .style('border-color','#fff')
+          .on('touchstart', function() {   
+            d3.select('#start_btn').remove();
+            chart_instance.current_year(globals.condition == 'multiples' ? globals.param_yearMax : globals.param_yearMin);
+            chart_instance.loop_count(0);
+            update_outer_progress(1 / 25);
+            chart_g.call(chart_instance);
+            
+            d3.selectAll('.mark').style('display',null);
+            d3.selectAll('.line').style('display',globals.condition == 'multiples' ? null : 'none');
+            d3.select('.year_indicator').style('display',null);
+            d3.select('#menubar').style('display',null);
+
+            d3.select('.task_instruction_span')
+            .html((globals.condition != 'multiples' ? ' View <span class=\'instruction_emphasis\'>all years</span>, s' : 'S') + 'elect <span class="instruction_number">three</span> countries that are <span class="instruction_emphasis">labeled with VOWELS</span> using the buttons below, then tap \'DONE\'.');  
+
+            countrySelector();      
+          }); 
+        }, 5000); 
 
         break;
 
@@ -317,12 +343,15 @@ function introduction (scene) {
           document.getElementById('introduction_div').remove(); 
         }
 
-        appInsights.trackEvent("Intro", { 
+        globals.log_message = { 
           "TimeStamp": new Date().valueOf(),
           "user_id": globals.userID,
           "Event": "Intro",
           "Scene": scene + 1
-        });
+        };
+
+        console.log('Intro',globals.log_message);
+
 
         scene = 7;
         introduction(scene);
@@ -484,7 +513,14 @@ function introduction (scene) {
 
     case 6: 
 
-      console.log('chart build');  
+      globals.log_message = { 
+        "TimeStamp": new Date().valueOf(),
+        "Event": "IntroChartBuild",
+        "user_id": globals.userID
+      };
+  
+      console.log("IntroChartBuild", globals.log_message);
+
 
       break;
     
@@ -507,7 +543,7 @@ function introduction (scene) {
       '<ol>' +
       '<li> <span class="instruction_emphasis">13 questions:</span>' + 
       '<ul>' +
-      '<li>These include  <span class="instruction_emphasis">3 practice questions</span> and <span class="instruction_emphasis">10 timed questions</span>.' +
+      '<li>These include  <span class="instruction_emphasis">3 practice questions</span> and <span class="instruction_emphasis">10 test questions</span>.' +
       '<li>Some questions may have <span class="instruction_emphasis">multiple correct responses</span>.' +
       '<li>Each question is expected to take under a minute to complete.' + 
       '<li>The question will always be shown below the chart.' +
@@ -527,11 +563,15 @@ function introduction (scene) {
       if (document.getElementById('introduction_div') != undefined) {      
         document.getElementById('introduction_div').remove(); 
       }
-      appInsights.trackEvent("IntroComplete", { 
+
+      globals.log_message = { 
         "TimeStamp": new Date().valueOf(),
         "Event": "IntroComplete",
         "user_id": globals.userID
-      });
+      };
+
+      console.log("IntroComplete", globals.log_message);
+
 
       introduction_complete = true;
       suppress_touch_feedback = false;
@@ -637,13 +677,17 @@ function introduction (scene) {
         if (document.getElementById('introduction_div') != undefined) {      
           document.getElementById('introduction_div').remove(); 
         }
-  
-        appInsights.trackEvent("Intro", { 
+
+        globals.log_message = { 
           "TimeStamp": new Date().valueOf(),
           "user_id": globals.userID,
           "Event": "Intro",
           "Scene": scene + 1
-        });
+        };
+
+        console.log("Intro", globals.log_message);
+
+  
         introduction(scene + 1);
       }
       else {
@@ -670,6 +714,7 @@ function introduction (scene) {
     menubar.append("input")
     .attr('class', 'img_btn_disabled')  
     .attr('id','prev_btn')
+    .style('display',globals.condition == 'stepper' ? null : 'none')
     .style('margin', function(){
       return height < width ? '0px' : '2px';
     })
@@ -747,6 +792,7 @@ function introduction (scene) {
 
     menubar.append("input")
     .attr('id','next_btn')
+    .style('display',globals.condition == 'stepper' ? null : 'none')
     .attr('class', globals.condition == 'stepper' ? 'img_btn_enabled' : 'img_btn_disabled')  
     .style('margin', function(){
       return height < width ? '0px' : '2px';
@@ -861,7 +907,7 @@ function introduction (scene) {
     .attr('id','prompt')
     .style('margin','2px')
     .style('height', (progress_dim) + 'px')
-    .style('width', (width - progress_dim * 3 - 24) + 'px')
+    .style('width', (width - progress_dim * (globals.condition == 'stepper' ? 3 : 1) - (globals.condition == 'stepper' ? 24 : 12)) + 'px')
     .on('touchstart', function() {    
       d3.event.preventDefault(); 
     });

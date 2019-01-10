@@ -60,7 +60,7 @@ function trial () {
       return height < width ? '0px' : '2px';
     })
     .style('width', function (){
-      return height < width ? (height - (height / 7) * 3 - 6) + 'px' : (width - (width / 7) * 3 - 6) + 'px';
+      return height < width ? (height - (height / 7) * (globals.condition == 'stepper' ? 3 : 1) - 6) + 'px' : (width - (width / 7) * (globals.condition == 'stepper' ? 3 : 1) - 6) + 'px';
     })
     .style('height', function(){
       return height < width ? (height / 7 - 6) : (width / 7 - 6) + 'px';
@@ -214,10 +214,8 @@ function trial () {
       .attr('class', 'feedback_btn_enabled')
       .style('top',(svg_dim + 5) + 'px')
       .attr('id','start_btn')
-      .on('touchstart', function() {   
-
-        startTrial();
-      });      
+      .style('border-color','transparent')
+      .style('height','125px');           
 
       var eur_hex = scale_reg('EU');
       var eur_color = '';
@@ -262,7 +260,25 @@ function trial () {
 
       d3.select('#start_btn').append('span')
       .attr('id','button_text')
-      .html(globals.trials[globals.trial_index].prompt + '<br><span>Tap on this message to start ' + (globals.trials[globals.trial_index].tutorial ? 'this <span class="instruction_emphasis">PRACTICE</span> trial.</span>' : ('trial <span class="instruction_emphasis">' + ((globals.trial_index - 3) + 1) + '</span> of <span class="instruction_emphasis">' + (globals.trials.length - 3) + '.</span></span>')));  
+      .html((globals.trials[globals.trial_index].tutorial ? '<span>Take note of the <span class="instruction_emphasis" style="color:gold;">two chart axes</span> above and this instruction:</span><br>' : '') + globals.trials[globals.trial_index].prompt + '<br>' + '<span id="time_warning">You may proceed after <span class="instruction_emphasis">5 seconds</span>.</span>' + '<span  id="time_delay_message" style="display:none;">Tap on this message to start ' + (globals.trials[globals.trial_index].tutorial ? 'this <span class="instruction_emphasis">PRACTICE</span> trial' : ('trial <span class="instruction_emphasis">' + ((globals.trial_index - 3) + 1) + '</span> of <span class="instruction_emphasis">' + (globals.trials.length - 3) + '</span>'))  + '<br> and TRIGGER THE TIMER.</span>');  
+
+      setTimeout(function(){
+        // allow participant to proceed after 5s
+
+        d3.select('#time_delay_message')
+        .style('display',null);
+
+        d3.select('#time_warning')
+        .style('display','none');
+
+        d3.select('#start_btn')
+        .style('border-color','#fff')
+        .on('touchstart', function() {   
+
+          startTrial();
+        }); 
+      }, 5000);
+
     }
     else {
       globals.trial_index = -1;
@@ -279,11 +295,14 @@ function trial () {
 
       chart_g.call(chart_instance);
 
-      appInsights.trackEvent("TrialsCompleted", { 
+      globals.log_message = { 
         "TimeStamp": new Date().valueOf(),
         "Event": "TrialsCompleted",
         "user_id": globals.userID
-      });
+      };
+
+      console.log("TrialsCompleted", globals.log_message);
+
       document.getElementById('trial_div').remove();
       
       loadMenu();
@@ -455,8 +474,8 @@ function trial () {
       trial.completion_time = trial.end_time - trial.start_time - trial.interruption_time;
       trial.responses = globals.trial_response;
 
-      console.log(trial);
-      appInsights.trackEvent("TrialComplete", trial);
+      console.log('TrialComplete', trial);
+
 
       if (globals.trials[globals.trial_index].tutorial == true) {
 
@@ -564,7 +583,14 @@ function trial () {
             d3.select('#feedback_btn').remove(); 
             if (globals.trial_index == 2) {
 
-              console.log('test trial warning');
+              globals.log_message = { 
+                "TimeStamp": new Date().valueOf(),
+                "Event": "TutorialsCompleted",
+                "user_id": globals.userID
+              };
+        
+              console.log("TutorialsCompleted", globals.log_message);
+
 
               var timed_trial_warning = d3.select('#trial_div').append('div')
               .attr('class', 'feedback_btn_enabled')
@@ -579,7 +605,7 @@ function trial () {
               timed_trial_warning.append('span')
               .attr('id','button_text')
               .style('font-weight','400')
-              .html('The remaining trials will be timed. Complete each trial as <span class="instruction_emphasis">quickly</span> as you can. You will not be told if your responses are correct. <br><span class="instruction_emphasis">Tap on this message to continue</span>.');  
+              .html('You have completed the practice trials. Complete the following trials as <span class="instruction_emphasis">quickly</span> and as <span class="instruction_emphasis">accurately</span> as you can. You will not be told if your responses are correct. <br><span class="instruction_emphasis">Tap on this message to continue</span>.');  
             }
             else {
               nextTrial();
@@ -609,18 +635,11 @@ function trial () {
   .attr('tabindex',0);
 
   all_data = nationData;  
-  if (non_interactive){
-    var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
-    codes = shuffle(codes);
-    all_data.forEach(function (d,i){ 
-      d.code = codes[i]; 
-    });
-  }
-  else {
-    all_data.forEach(function (d){ 
-      d.code = d.orig_code; 
-    });
-  }     
+  var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
+  codes = shuffle(codes);
+  all_data.forEach(function (d,i){ 
+    d.code = codes[i]; 
+  });
   loadData(); 
 
   getDims();
@@ -637,6 +656,7 @@ function trial () {
   .attr('name','PrevToggle')
   .attr('title', 'PrevToggle')
   .attr('disabled', true)
+  .style('display',globals.condition == 'stepper' ? null : 'none')
   .attr('src', globals.condition == 'stepper' ? 'assets/prev_grey.svg' : 'assets/na.svg')
   .on('touchstart', function() {    
     d3.event.preventDefault();    
@@ -709,6 +729,7 @@ function trial () {
   .attr('type','image') 
   .attr('name','NextToggle')
   .attr('title', 'NextToggle')
+  .style('display',globals.condition == 'stepper' ? null : 'none')
   .attr('src', globals.condition == 'stepper' ? 'assets/next.svg' : 'assets/na.svg')
   .attr('disabled', globals.condition == 'stepper' ? null : true)
   .on('touchstart', function() {    

@@ -1,7 +1,6 @@
 var d3 = require("d3");
 var globals = require("./globals");
 var chart = require("./chart");
-var carousel = require("./carousel");
 var nationData = require("./data/studyData");
 
 function sandbox () {
@@ -29,39 +28,30 @@ function sandbox () {
     .style('height',svg_dim + 'px')
     .style('width',svg_dim + 'px');
 
-    if (window.location.href.indexOf('mobubble') != -1) {
-      d3.select('#selector_div')
-      .style('height', function(){
-      if (height < width) {
-        d3.select('#annotation_div').style('height',(height - 20) + 'px');
-        return (height) + 'px';
-      }
-      else {
-        var menubar_height = non_interactive ? (width / 7) : 0;
-        var remaining_height = height - svg_dim - menubar_height - 10; 
-        d3.select('#annotation_div').style('height',(remaining_height - 20) + 'px');
-        return (remaining_height) + 'px';
-      }
-      })
-      .style('width', function(){
-        if (height < width) {
-          var menubar_width = non_interactive ? (height / 7) : 0;
-          var remaining_width = width - svg_dim - menubar_width; 
-          d3.select('#annotation_div').style('width',(remaining_width - 20) + 'px');
-          return (remaining_width) + 'px';
-        }
-        else {        
-          d3.select('#annotation_div').style('width',(width - 20) + 'px');
-          return (width) + 'px';
-        }      
-      })
-      .style('float', (height < width) ? 'right' : 'unset')
-      .style('left', (height < width) ? (svg_dim) + 'px' : 'unset');
-
-      d3.select('#carousel_svg').style('width',d3.select('#selector_div').style('width'));
-      d3.select('#carousel_svg').style('height',d3.select('#selector_div').style('height'));
-      
+    d3.select('#selector_div')
+    .style('height', function(){
+    if (height < width) {
+      return (height) + 'px';
     }
+    else {
+      var menubar_height = width / 7;
+      var remaining_height = height - svg_dim - menubar_height - 10; 
+      return (remaining_height) + 'px';
+    }
+    })
+    .style('width', function(){
+      if (height < width) {
+        var menubar_width = height / 7;
+        var remaining_width = width - svg_dim - menubar_width; 
+        return (remaining_width) + 'px';
+      }
+      else {        
+        return (width) + 'px';
+      }      
+    })
+    .style('float', (height < width) ? 'right' : 'unset')
+    .style('left', (height < width) ? (svg_dim) + 'px' : 'unset');
+      
 
     chart_g.attr('transform','translate(' + inner_padding + ',' + inner_padding + ')');
   
@@ -72,14 +62,7 @@ function sandbox () {
     chart_instance.current_year(globals.param_yearMin);
 
     chart_g.call(chart_instance);
-    chart_g.call(chart_instance);
-
-    if (window.location.href.indexOf('mobubble') != -1) { 
-
-      carousel_g.datum([]);
-      carousel_g.call(carousel_instance);
-
-    }
+    chart_g.call(chart_instance);    
   
     d3.selectAll('.toolbar')
     .style('position','absolute')
@@ -109,13 +92,16 @@ function sandbox () {
       chart_instance.lines("on"); 
     }
     chart_g.call(chart_instance);
-    appInsights.trackEvent("SandBoxEvent", { 
+    globals.log_message = { 
       "TimeStamp": new Date().valueOf(),
       "user_id": globals.userID, 
       "Event": "SandBoxEvent",
       "EventType": "toggleLines", 
       "Status": chart_instance.lines()
-    });
+    };
+    console.log("SandBoxEvent", globals.log_message);
+
+
     document.getElementById('sandbox_div').focus();
   }
 
@@ -145,13 +131,16 @@ function sandbox () {
       .attr('class','img_btn_disabled');
     }
     chart_g.call(chart_instance);
-    appInsights.trackEvent("SandBoxEvent", { 
+    globals.log_message = { 
       "TimeStamp": new Date().valueOf(),
       "user_id": globals.userID, 
       "Event": "SandBoxEvent",
       "EventType": "toggleAnimate", 
       "Status": chart_instance.animation()
-    });
+    };
+    console.log("SandBoxEvent", globals.log_message);
+
+
     document.getElementById('sandbox_div').focus();
   }
   
@@ -164,13 +153,17 @@ function sandbox () {
       chart_instance.facets("on");      
     }
     chart_g.call(chart_instance);
-    appInsights.trackEvent("SandBoxEvent", { 
+
+    globals.log_message = { 
       "TimeStamp": new Date().valueOf(),
       "user_id": globals.userID, 
       "Event": "SandBoxEvent",
       "EventType": "toggleFacets", 
       "Status": chart_instance.facets()
-    });
+    };
+    console.log("SandBoxEvent", globals.log_message);
+
+
     document.getElementById('sandbox_div').focus();
   }
 
@@ -186,41 +179,25 @@ function sandbox () {
         d3.select('#sandbox_div')
         .style('visibility','visible');
 
-        appInsights.trackEvent("SandBoxEvent", { 
+        globals.log_message = { 
           "TimeStamp": new Date().valueOf(),
           "user_id": globals.userID, 
           "Event": "SandBoxEvent",
           "EventType": "loadData", 
-        });
+        };
+        console.log("SandBoxEvent", globals.log_message);
+
 
         clearInterval(checkExist);
       }
     }, 100); // check every 100ms
 
-    chart_instance = chart();
-    if (window.location.href.indexOf('mobubble') != -1) {
-      carousel_instance = carousel();
-    }
+    chart_instance = chart();    
   
     main_svg = d3.select('#main_svg').remove();
   
     main_svg = d3.select('#sandbox_div').append('svg')
-    .attr('id','main_svg');  
-
-    if (window.location.href.indexOf('mobubble') != -1) {
-      carousel_svg = d3.select('#carousel_svg').remove();
-    
-      carousel_svg = d3.select('#selector_div').append('svg')
-      .attr('id','carousel_svg');  
-      
-      carousel_g = carousel_svg.append('g')
-      .attr('id','carousel_g').style('display','inline');    
-      
-      d3.select('#selector_div').append('div')
-      .attr('id','annotation_div')
-      .style('display','none')
-      .html('<span class="annotation"></span>');
-    }
+    .attr('id','main_svg');      
   
     defs = d3.select('#main_svg').append('defs');
   
@@ -253,120 +230,123 @@ function sandbox () {
   .attr('tabindex',0);
 
   all_data = nationData;  
-  if (non_interactive){
-    var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
-    codes = shuffle(codes);
-    all_data.forEach(function (d,i){ 
-      d.code = codes[i]; 
-    });
-  }
-  else {
-    all_data.forEach(function (d){ 
-      d.code = d.orig_code; 
-    });
-  }     
+  var codes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]; //,
+  codes = shuffle(codes);
+  all_data.forEach(function (d,i){ 
+    d.code = codes[i]; 
+  });
+    
   loadData(); 
 
   function exitHandler () {
-    // console.log('remove sandbox');
-    if (window.location.href.indexOf('mobubble') == -1){
-      appInsights.trackEvent("SandBox_Closed", { 
-        "TimeStamp": new Date().valueOf(),
-        "Event": "SandBox_Closed",
-        "user_id": globals.userID
-      });
-      document.getElementById('sandbox_div').remove();
-      if (document.getElementById('selector_div') != undefined) {      
-        document.getElementById('selector_div').remove();                    
-      } 
-      loadMenu();
-      hideAddressBar();   
-    }    
+    globals.log_message = { 
+      "TimeStamp": new Date().valueOf(),
+      "Event": "SandBox_Closed",
+      "user_id": globals.userID
+    };
+    console.log("SandBox_Closed", globals.log_message);
+
+    
+    document.getElementById('sandbox_div').remove();
+    if (document.getElementById('selector_div') != undefined) {      
+      document.getElementById('selector_div').remove();                    
+    } 
+    loadMenu();
+    hideAddressBar();   
   }
 
-  if (non_interactive) {
-    var menubar = d3.select('#sandbox_div').append('div')
-    .attr('class','toolbar')
-    .attr('id','menubar');
-    
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('id','fullscreen_btn')
-    .attr('disabled', null)
-    .attr('type','image')
-    .attr('name','Exit')
-    .attr('title', 'Exit')
-    .attr('src', 'assets/fullscreen.png')
-    .on('touchstart',function(){
-      d3.event.preventDefault();
-      exitHandler();
-    });
+  var menubar = d3.select('#sandbox_div').append('div')
+  .attr('class','toolbar')
+  .attr('id','menubar');
   
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('id','na_btn')
-    .attr('type','image')
-    .attr('name','MiscToggle')
-    .attr('title', 'MiscToggle')
-    .attr('src', 'assets/na.svg')
-    .on('touchstart', function() {
-      d3.event.preventDefault(); 
-    });    
-  
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('type','image')
-    .attr('name','LineToggle')
-    .attr('title', 'LineToggle')
-    .attr('src', 'assets/line.svg')
-    .on('touchstart', function() {
-      d3.event.preventDefault();
-      toggleLines();
-    });
-  
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('type','image')
-    .attr('name','FacetToggle')
-    .attr('title', 'FacetToggle')
-    .attr('src', 'assets/grid.svg')
-    .on('touchstart', function() {
-      d3.event.preventDefault();
-      toggleFacets();
-    });  
-  
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('type','image')
-    .attr('name','AnimateToggle')
-    .attr('title', 'AnimateToggle')
-    .attr('src', 'assets/play.svg')
-    .on('touchstart', function() {
-      d3.event.preventDefault();
-      toggleAnimate();
-    });  
-  
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('id','prev_btn')
-    .attr('type','image')
-    .attr('name','PrevToggle')
-    .attr('title', 'PrevToggle')
-    .attr('src', 'assets/prev.svg')
-    .on('touchstart', function() {    
-      d3.event.preventDefault();
-      d3.select(this).transition()
-      .duration(250)
-      .ease(d3.easeCubic)
-      .attr('src', 'assets/prev_gold.svg')
-      .transition()
-      .duration(250)
-      .ease(d3.easeCubic)
-      .attr('src', 'assets/prev.svg');
-      chart_instance.this_chart().interrupt();
-  
-      if (chart_instance.animation() == 'off'){
-  
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('id','fullscreen_btn')
+  .attr('disabled', null)
+  .attr('type','image')
+  .attr('name','Exit')
+  .attr('title', 'Exit')
+  .attr('src', 'assets/fullscreen.png')
+  .on('touchstart',function(){
+    d3.event.preventDefault();
+    exitHandler();
+  });
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('id','na_btn')
+  .attr('type','image')
+  .attr('name','MiscToggle')
+  .attr('title', 'MiscToggle')
+  .attr('src', 'assets/na.svg')
+  .on('touchstart', function() {
+    d3.event.preventDefault(); 
+  });    
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('type','image')
+  .attr('name','LineToggle')
+  .attr('title', 'LineToggle')
+  .attr('src', 'assets/line.svg')
+  .on('touchstart', function() {
+    d3.event.preventDefault();
+    toggleLines();
+  });
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('type','image')
+  .attr('name','FacetToggle')
+  .attr('title', 'FacetToggle')
+  .attr('src', 'assets/grid.svg')
+  .on('touchstart', function() {
+    d3.event.preventDefault();
+    toggleFacets();
+  });  
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('type','image')
+  .attr('name','AnimateToggle')
+  .attr('title', 'AnimateToggle')
+  .attr('src', 'assets/play.svg')
+  .on('touchstart', function() {
+    d3.event.preventDefault();
+    toggleAnimate();
+  });  
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('id','prev_btn')
+  .attr('type','image')
+  .attr('name','PrevToggle')
+  .attr('title', 'PrevToggle')
+  .attr('src', 'assets/prev.svg')
+  .on('touchstart', function() {    
+    d3.event.preventDefault();
+    d3.select(this).transition()
+    .duration(250)
+    .ease(d3.easeCubic)
+    .attr('src', 'assets/prev_gold.svg')
+    .transition()
+    .duration(250)
+    .ease(d3.easeCubic)
+    .attr('src', 'assets/prev.svg');
+    chart_instance.this_chart().interrupt();
+
+    if (chart_instance.animation() == 'off'){
+
+      if (chart_instance.current_year() == chart_instance.params().yearMin) {
+        chart_instance.current_year(chart_instance.params().yearMax);
+      }
+      else {
+        var prev_year = chart_instance.current_year() - 1;
+        chart_instance.current_year(prev_year);
+      }
+      chart_g.call(chart_instance);
+
+      checkTouch = setInterval(function() {
         if (chart_instance.current_year() == chart_instance.params().yearMin) {
           chart_instance.current_year(chart_instance.params().yearMax);
         }
@@ -375,78 +355,64 @@ function sandbox () {
           chart_instance.current_year(prev_year);
         }
         chart_g.call(chart_instance);
-  
-        checkTouch = setInterval(function() {
-          if (chart_instance.current_year() == chart_instance.params().yearMin) {
-            chart_instance.current_year(chart_instance.params().yearMax);
-          }
-          else {
-            var prev_year = chart_instance.current_year() - 1;
-            chart_instance.current_year(prev_year);
-          }
-          chart_g.call(chart_instance);
-        }, 500); // check every 500ms if touch is ongoing          
-  
+      }, 500); // check every 500ms if touch is ongoing          
+
+    }
+  })
+  .on('touchend', function(){
+    d3.event.preventDefault();
+    clearInterval(checkTouch);
+  });    
+
+  menubar.append("input")
+  .attr('class', 'img_btn_enabled')
+  .attr('id','next_btn')
+  .attr('type','image') 
+  .attr('name','NextToggle')
+  .attr('title', 'NextToggle')
+  .attr('src', 'assets/next.svg')
+  .on('touchstart', function() {    
+    d3.event.preventDefault();
+    d3.select(this).transition()
+    .duration(250)
+    .ease(d3.easeCubic)
+    .attr('src', 'assets/next_gold.svg')
+    .transition()
+    .duration(250)
+    .ease(d3.easeCubic)
+    .attr('src', 'assets/next.svg');
+    chart_instance.this_chart().interrupt();
+
+    if (chart_instance.animation() == 'off'){
+
+      if (chart_instance.current_year() == chart_instance.params().yearMax) {
+        chart_instance.loop_count(chart_instance.loop_count + 1);
+        chart_instance.current_year(chart_instance.params().yearMin);
       }
-    })
-    .on('touchend', function(){
-      d3.event.preventDefault();
-      clearInterval(checkTouch);
-    });    
-  
-    menubar.append("input")
-    .attr('class', 'img_btn_enabled')
-    .attr('id','next_btn')
-    .attr('type','image') 
-    .attr('name','NextToggle')
-    .attr('title', 'NextToggle')
-    .attr('src', 'assets/next.svg')
-    .on('touchstart', function() {    
-      d3.event.preventDefault();
-      d3.select(this).transition()
-      .duration(250)
-      .ease(d3.easeCubic)
-      .attr('src', 'assets/next_gold.svg')
-      .transition()
-      .duration(250)
-      .ease(d3.easeCubic)
-      .attr('src', 'assets/next.svg');
-      chart_instance.this_chart().interrupt();
-  
-      if (chart_instance.animation() == 'off'){
-  
+      else {
+        var next_year = chart_instance.current_year() + 1;
+        chart_instance.current_year(next_year);
+      }
+      chart_g.call(chart_instance);
+
+      checkTouch = setInterval(function() {
         if (chart_instance.current_year() == chart_instance.params().yearMax) {
           chart_instance.loop_count(chart_instance.loop_count + 1);
           chart_instance.current_year(chart_instance.params().yearMin);
         }
         else {
           var next_year = chart_instance.current_year() + 1;
-          chart_instance.current_year(next_year);
+        chart_instance.current_year(next_year);
         }
         chart_g.call(chart_instance);
-  
-        checkTouch = setInterval(function() {
-          if (chart_instance.current_year() == chart_instance.params().yearMax) {
-            chart_instance.loop_count(chart_instance.loop_count + 1);
-            chart_instance.current_year(chart_instance.params().yearMin);
-          }
-          else {
-            var next_year = chart_instance.current_year() + 1;
-          chart_instance.current_year(next_year);
-          }
-          chart_g.call(chart_instance);
-        }, 500); // check every 500ms if touch is ongoing          
-  
-      }
-    })
-    .on('touchend', function(){
-      d3.event.preventDefault();
-      clearInterval(checkTouch);
-    });    
-  }
-  else if (window.location.href.indexOf('mobubble') != -1) {
-    chart_instance.tilt('on');
-  }
+      }, 500); // check every 500ms if touch is ongoing          
+
+    }
+  })
+  .on('touchend', function(){
+    d3.event.preventDefault();
+    clearInterval(checkTouch);
+  });    
 
 }
 

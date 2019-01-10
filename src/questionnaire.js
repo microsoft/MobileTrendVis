@@ -9,11 +9,22 @@ function questionnaire (scene) {
   var clip = new Clipboard('.btn'); 
 
   clip.on("success", function(e) {
-    console.log('copied: ' + e.text);    
+
+    globals.log_message = { 
+      "TimeStamp": new Date().valueOf(),
+      "Event": "CodeCopied",
+      "user_id": globals.userID,
+      "code": e.text
+    };
+
+    console.log("CodeCopied", globals.log_message);
+
+
   });
   clip.on("error", function(e) {
     console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);   
+    console.error('Trigger:', e.trigger);  
+
   });
 
   d3.select('#questionnaire_div').remove();
@@ -50,14 +61,17 @@ function questionnaire (scene) {
       .attr('title', 'NEXT')
       .on('touchstart', function() {   
         
-        d3.event.preventDefault(); 
+        d3.event.preventDefault();
         
-        appInsights.trackEvent("Survey", { 
+        globals.log_message = { 
           "TimeStamp": new Date().valueOf(),
           "user_id": globals.userID,
           "Event": "Survey",
           "Scene": scene + 1
-        });
+        };
+        
+        console.log("Survey", globals.log_message);
+
 
         questionnaire(scene + 1);        
         
@@ -83,13 +97,17 @@ function questionnaire (scene) {
         d3.event.preventDefault(); 
         
         if (d3.select(this).attr('disabled') == null) {
-          appInsights.trackEvent("Survey", { 
+
+          globals.log_message = { 
             "TimeStamp": new Date().valueOf(),
             "user_id": globals.userID,
             "Event": "Survey",
             "Question": "Familiarity",
             "Response": familiarity
-          });
+          };
+          
+          console.log("Survey", globals.log_message);
+
   
           questionnaire(scene + 1);          
         
@@ -150,13 +168,18 @@ function questionnaire (scene) {
         d3.event.preventDefault(); 
         
         if (d3.select(this).attr('disabled') == null) {
-          appInsights.trackEvent("Survey", { 
+
+          globals.log_message = { 
             "TimeStamp": new Date().valueOf(),
             "user_id": globals.userID,
             "Event": "Survey",
             "Question": "Confidence",
             "Response": confidence
-          });  
+          };
+          
+          console.log("Survey", globals.log_message);
+
+
           questionnaire(scene + 1);          
         }
 
@@ -216,14 +239,18 @@ function questionnaire (scene) {
         d3.event.preventDefault(); 
 
         if (d3.select(this).attr('disabled') == null) {
-          appInsights.trackEvent("Survey", { 
+         
+          globals.log_message = { 
             "TimeStamp": new Date().valueOf(),
             "user_id": globals.userID,
             "Event": "Survey",
-            "Question": "Confidence",
+            "Question": "Ease",
             "Response": ease
-          });
-  
+          };
+          
+          console.log("Survey", globals.log_message);
+
+           
           questionnaire(scene + 1); 
         }
 
@@ -274,28 +301,33 @@ function questionnaire (scene) {
       .attr('class','toolbar')
       .style('width','100%')
       .style('height',(window.innerHeight - 50) + 'px')
-      .attr('id','intro_content_div');        
+      .attr('id','intro_content_div');      
+      
+      //CHANGE 9907617274 FOR PRODUCTION
 
       questionnaire_content_div.append('span')
       .attr('class','consent_text')
-      .html('<span class="instruction_emphasis">Thank you!</span><br>You have completed the survey and the study. Copy your completion code below. This code will remain valid for 30 minutes:<br><br><span class="instruction_emphasis" id="copy_code" style="user-select:all;">7479906172</span>'
+      .html('<span class="instruction_emphasis">Thank you!</span><br>You have completed the survey and the study. Copy your completion code below. This code will remain valid for 30 minutes:<br><br><span class="instruction_emphasis" id="copy_code" style="user-select:all;">9907617274</span>'
       );          
 
       d3.select('#questionnaire_div').append('input')
       .attr('class', 'btn')
       .attr('id','submit_btn')
       .attr('type','button')
-      .attr('value','Copy 7479906172')
-      .attr('title', 'Copy 7479906172')
+      .attr('value','Copy 9907617274')
+      .attr('title', 'Copy 9907617274')
       .attr('data-clipboard-target','#copy_code')
-      .attr('data-clipboard-text', '7479906172');
-      
-      appInsights.trackEvent("SurveyComplete", { 
+      .attr('data-clipboard-text', '9907617274');
+
+      globals.log_message = { 
         "TimeStamp": new Date().valueOf(),
         "Event": "SurveyComplete",
         "user_id": globals.userID
-      });        
+      };
+      
+      console.log("SurveyComplete", globals.log_message);
 
+      
       questionnaire_complete = true;
 
       break;

@@ -1,5 +1,4 @@
 # TooSmallForMultiples
-A semi-reproduction of "Effectiveness of Animation in Trend Visualization" (Robertson et al, IEEE TVCG 2007) on mobile devices
 
 ## Setup / Testing
 

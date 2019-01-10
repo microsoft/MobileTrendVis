@@ -95,15 +95,7 @@ function countrySelector () {
           .attr('disabled',true)
           .attr('src', 'assets/na.svg');
         }
-
-        if (!non_interactive) {
-          // chart_instance.outside_points().push(d.code);              
-  
-          var bubble_ind = chart_instance.bubbleset_points().indexOf(d.code);
-          chart_instance.bubbleset_points().splice(bubble_ind,1);
-  
-          chart_g.call(chart_instance);
-        }
+        
       }
       else {
         if ((!introduction_complete && globals.num_selected < 3) || (introduction_complete && globals.num_selected != globals.trials[globals.trial_index].num_responses)) {
@@ -128,16 +120,7 @@ function countrySelector () {
             .attr('disabled',true)
             .attr('src', 'assets/na.svg');
           }          
-        }
-        if (!non_interactive) {
-          d3.select(this).style('border', '5px solid gold');             
-  
-          // var outside_ind = chart_instance.outside_points().indexOf(d.code);
-          // chart_instance.outside_points().splice(outside_ind,1);
-          chart_instance.bubbleset_points().push(d.code);
-          chart_g.call(chart_instance);                    
-          
-        }
+        }        
       }
       if (globals.outer_progress_circle != undefined) {
         if (!introduction_complete) {
