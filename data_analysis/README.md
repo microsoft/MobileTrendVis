@@ -14,7 +14,7 @@ Maintained by [Matthew Brehmer](https://github.com/mattbrehmer).
 
 4. In the R terminal, `> source(main.R)`, which will process the log files, compute (bootstrap) CIs for time and error, and export plots. Depending on how powerful your machine is, the bootstrap CI calculations may take a few minutes.
 
-5. All of the .pdf and .png charts will appear in this directory.
+5. All of the .pdf charts will appear in this directory.
 
 ## 3rd party package dependencies:
 

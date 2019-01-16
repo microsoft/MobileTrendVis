@@ -8,7 +8,7 @@ It contains including source code for software used in an experiment as well as 
 
 <img src="screenshots.png" title="The five stages of a single task, as experienced in the Animation condition (top) and in the Multiples condition (bottom), comprised of atask instruction reading phase (Steps 1–2) and a task completion phase (Steps 3–5)."  alt="The five stages of a single task, as experienced in the Animation condition (top) and in the Multiples condition (bottom), comprised of atask instruction reading phase (Steps 1–2) and a task completion phase (Steps 3–5)." style="width: 100%;"/>
 
-**Figure**: The five stages of a single task, as experienced in the Animation condition (top) and in the Multiples condition (bottom), comprised of atask instruction reading phase (Steps 1–2) and a task completion phase (Steps 3–5).
+**Figure**: The five stages of a single task, as experienced in the Animation condition (top) and in the Multiples condition (bottom), comprised of a task instruction reading phase (Steps 1–2) and a task completion phase (Steps 3–5).
 
 This repository is maintained by [Matthew Brehmer](https://github.com/mattbrehmer).
 
@@ -46,13 +46,13 @@ The application incorporates (and modifies) the following [CC BY 3.0](https://cr
 ### 3rd party package dependencies
 
 - [d3](https://www.npmjs.com/package/d3) ([BSD-3 license](https://github.com/d3/d3/blob/master/LICENSE))
-- d3-rect
+- [d3-rect](https://www.npmjs.com/package/d3-rect) ([BSD-3 license](https://github.com/d3/d3/blob/master/LICENSE))
 - [clipboard](https://www.npmjs.com/package/clipboard) ([MIT license](http://zenorocha.mit-license.org/))
-- csv-loader
+- [csv-loader](https://www.npmjs.com/package/csv-loader) ([MIT license](http://spdx.org/licenses/MIT.html))
 - [serve](https://www.npmjs.com/package/serve) ([MIT license](http://spdx.org/licenses/MIT.html))
-- pre-loader
-- socket.io
-- socket.io-client
+- [pre-loader](https://www.npmjs.com/package/preloader) ([MIT license](http://spdx.org/licenses/MIT.html))
+- [socket.io](https://www.npmjs.com/package/socket.io) ([MIT license](http://spdx.org/licenses/MIT.html))
+- [socket.io-client](https://www.npmjs.com/package/socket.io-client) ([MIT license](http://spdx.org/licenses/MIT.html))
 - [webpack](https://www.npmjs.com/package/webpack) ([MIT license](http://spdx.org/licenses/MIT.html))
 - [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) ([MIT license](http://spdx.org/licenses/MIT.html))
 - [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware) ([MIT license](http://spdx.org/licenses/MIT.html))
