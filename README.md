@@ -1,6 +1,6 @@
-# Too Small for Multiples? Animated vs. Faceted Trend Visualization on Mobile Phones
+# A Comparative Evaluation of Animation and Small Multiples For Trend Visualization on Mobile Phones
 
-This repository contains supplemental material for a research paper **Too Small for Multiples? Animated vs. Faceted Trend Visualization on Mobile Phones** by [Matthew Brehmer (Microsoft Research)](mailto:mabrehme@microsoft.com), [Bongshin Lee (Microsoft Research)](mailto:bongshin@microsoft.com), [Petra Isenberg (Inria)](mailto:petra.isenberg@inria.fr), and [Eun Kyoung Choe (University of Maryland)](mailto:choe@umd.edu). 
+This repository contains supplemental material for a research paper **A Comparative Evaluation of Animation and Small Multiples For Trend Visualization on Mobile Phones** by [Matthew Brehmer (Microsoft Research)](mailto:mabrehme@microsoft.com), [Bongshin Lee (Microsoft Research)](mailto:bongshin@microsoft.com), [Petra Isenberg (Inria)](mailto:petra.isenberg@inria.fr), and [Eun Kyoung Choe (University of Maryland)](mailto:choe@umd.edu). 
 
 It contains including source code for software used in an experiment as well as [experimental data and analysis scripts](data_analysis).
 
