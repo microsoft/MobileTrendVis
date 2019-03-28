@@ -1,4 +1,4 @@
-# Too Small for Multiples? Study Data + Analysis Scripts
+# A Comparative Evaluation of Animation and Small Multiples For Trend Visualization on Mobile Phones: Study Data + Analysis Scripts
 
 Analyzing the results of an graphical perception study comparing animated and faceted bubble charts.
 
@@ -28,4 +28,4 @@ Maintained by [Matthew Brehmer](https://github.com/mattbrehmer).
 
 ## Additional attribution:
 
-Bootstrap CI calculation (`bootCIs.R`) and plotting (`plot_CIs.R`) helper functions were adapted from [an R Markdown tutorial by Pierre Dragicevic](http://www.aviz.fr/ci/), a companion to the paper "[La Différence Significative entre Valeurs p et Intervalles de Confiance](https://hal.inria.fr/hal-01562281/document)" by Lonni Besançon and Pierre Dragicevic, AFIHM. 29ème conférence francophone sur l’Interaction Homme-Machine, Aug 2017, Poitiers, France. IHM-2017, pp.10, 2017
+Bootstrap CI calculation and plotting helper functions were adapted from [an R Markdown tutorial by Pierre Dragicevic](http://www.aviz.fr/ci/), a companion to the paper "[La Différence Significative entre Valeurs p et Intervalles de Confiance](https://hal.inria.fr/hal-01562281/document)" by Lonni Besançon and Pierre Dragicevic, AFIHM. 29ème conférence francophone sur l’Interaction Homme-Machine, Aug 2017, Poitiers, France. IHM-2017, pp.10, 2017
