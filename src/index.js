@@ -49,28 +49,28 @@ socket.on('completion', function(msg) {
 });
 
 
-function setCookie (c_name, value, exdays)
-{
-  var exdate = new Date();
-  exdate.setDate(exdate.getDate() + exdays);
-  var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-  document.cookie = c_name + "=" + c_value;
-}
+// function setCookie (c_name, value, exdays)
+// {
+//   var exdate = new Date();
+//   exdate.setDate(exdate.getDate() + exdays);
+//   var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+//   document.cookie = c_name + "=" + c_value;
+// }
 
-function getCookie (c_name)
-{
-   var i,x,y,ARRcookies=document.cookie.split(";");
-   for (i=0;i<ARRcookies.length;i++)
-    {
-       x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-          y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-          x=x.replace(/^\s+|\s+$/g,"");
-          if (x==c_name)
-          {
-              return unescape(y);
-          }
-    }
- }
+// function getCookie (c_name)
+// {
+//    var i,x,y,ARRcookies=document.cookie.split(";");
+//    for (i=0;i<ARRcookies.length;i++)
+//     {
+//        x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+//           y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+//           x=x.replace(/^\s+|\s+$/g,"");
+//           if (x==c_name)
+//           {
+//               return unescape(y);
+//           }
+//     }
+//  }
 
 
 /* jshint ignore:end */
@@ -495,42 +495,41 @@ loadMenu = function () {
   });
 };
 
- if (getCookie('visited')) {
-  // alert('You have already participated in this study.'); //COMMENT FOR TESTING
+//  if (getCookie('visited')) {
+//   // alert('You have already participated in this study.'); //COMMENT FOR TESTING
 
-  globals.log_message = { 
-    "TimeStamp": new Date().valueOf(),
-    "Event": "RepeatParticipant",
-    "userAgent": navigator.userAgent,
-    "user_id": globals.userID
-  };
+//   globals.log_message = { 
+//     "TimeStamp": new Date().valueOf(),
+//     "Event": "RepeatParticipant",
+//     "userAgent": navigator.userAgent,
+//     "user_id": globals.userID
+//   };
   
-  console.log("RepeatParticipant", globals.log_message);
+//   console.log("RepeatParticipant", globals.log_message);
 
 
-  socket.emit('userID', {
-    userID: globals.userID,
-    userAgent: navigator.userAgent
-  }); //COMMENT FOR PRODUCTION
- }
- else {
-  setCookie('visited',1,365);
+//   socket.emit('userID', {
+//     userID: globals.userID,
+//     userAgent: navigator.userAgent
+//   }); //COMMENT FOR PRODUCTION
+//  }
+//  else {
+  // setCookie('visited',1,365);
 
-   globals.log_message = { 
-    "TimeStamp": new Date().valueOf(),
-    "Event": "NewParticipant",
-    "userAgent": navigator.userAgent,
-    "user_id": globals.userID
-  };
-  
-  console.log("NewParticipant", globals.log_message);
+globals.log_message = { 
+  "TimeStamp": new Date().valueOf(),
+  "Event": "NewParticipant",
+  "userAgent": navigator.userAgent,
+  "user_id": globals.userID
+};
 
+console.log("NewParticipant", globals.log_message);
 
-  socket.emit('userID', {
-    userID: globals.userID,
-    userAgent: navigator.userAgent
-  });  
- }
+socket.emit('userID', {
+  userID: globals.userID,
+  userAgent: navigator.userAgent
+});  
+//  }
 
 d3.select('body').append('svg')
 .style('display','none')
