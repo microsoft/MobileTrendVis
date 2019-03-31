@@ -22,9 +22,9 @@ An instance of the application is running at [aka.ms/multiples](http://aka.ms/mu
 
 1. Open a terminal and navigate to this directory
 
-2. Ensure that [nodejs](https://nodejs.org/) and optionally the [yarn package manager](https://yarnpkg.com/en/docs/getting-started) are installed
+2. Ensure that [nodejs](https://nodejs.org/) is installed
 
-3. Install the necessary packages with the `yarn` command or `npm install`
+3. Install the necessary packages with `npm install`
 
 4. Start the node server with: `npm start`
 
