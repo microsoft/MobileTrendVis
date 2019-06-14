@@ -6,10 +6,11 @@ pointsCI <- function(result.df,task_num,exp_condition) {
   result_subset.df <- subset(result.df,task_index==task_num)
   result_subset.df <- result_subset.df[log(result_subset.df$completion_time) < mean(log(result_subset.df$completion_time)) + 3 * sd(log(result_subset.df$completion_time)) & result_subset.df$condition==exp_condition,]
   
-  CI <- bootstrapMeanCI((result_subset.df$points / result_subset.df$num_responses))
+  CI <- bootstrapMeanCI((result_subset.df$points / result_subset.df$num_responses),0.95)
+  BCI <- bootstrapMeanCI((result_subset.df$points / result_subset.df$num_responses),0.99)
   
-  exactCI.df <- data.frame(task_num,exp_condition,CI[1],CI[2],CI[3],length(result_subset.df$points))
-  colnames(exactCI.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','n')
+  exactCI.df <- data.frame(task_num,exp_condition,CI[1],CI[2],CI[3],BCI[2],BCI[3],length(result_subset.df$points))
+  colnames(exactCI.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','lowerBound_BCI','upperBound_BCI','n')
   
   return(exactCI.df)
 }

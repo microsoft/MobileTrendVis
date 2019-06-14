@@ -7,9 +7,10 @@ accuracyCI <- function(result.df,task_num,exp_condition) {
   result_subset.df <- result_subset.df[log(result_subset.df$completion_time) < mean(log(result_subset.df$completion_time)) + 3 * sd(log(result_subset.df$completion_time)) & result_subset.df$condition==exp_condition,]
   
   CI <- PropCIs::exactci(sum(result_subset.df$accuracy), length(result_subset.df$accuracy), 0.95)
+  BCI <- PropCIs::exactci(sum(result_subset.df$accuracy), length(result_subset.df$accuracy), 0.994)
   
-  exactCI.df <- data.frame(task_num,exp_condition,mean(result_subset.df$accuracy),CI$conf.int[1],CI$conf.int[2],length(result_subset.df$accuracy))
-  colnames(exactCI.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','n')
+  exactCI.df <- data.frame(task_num,exp_condition,mean(result_subset.df$accuracy),CI$conf.int[1],CI$conf.int[2],BCI$conf.int[1],BCI$conf.int[2],length(result_subset.df$accuracy))
+  colnames(exactCI.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','lowerBound_BCI','upperBound_BCI','n')
   
   return(exactCI.df)
   

@@ -15,12 +15,16 @@ propDiffCI <- function(result.df,task_num) {
   prop_diff <- prop_animation - prop_multiples
   
   prop_test <- prop.test(x=c(correct_animation,correct_multiples), n=c(count_animation,count_multiples), correct=T)
+  bprop_test <- prop.test(x=c(correct_animation,correct_multiples), n=c(count_animation,count_multiples), correct=T, conf.level = 0.994)
   
   lowerBound_CI <- prop_test$conf.int[1]
   upperBound_CI <- prop_test$conf.int[2]
   
-  diffCI.df <- data.frame('Anim - Mult',task_num,correct_animation,count_animation,prop_animation,correct_multiples,count_multiples,prop_multiples,prop_diff,lowerBound_CI,upperBound_CI)
-  colnames(diffCI.df) <- c('condition','task','correct_animation','count_animation','prop_animation','correct_multiples','count_multiples','prop_multiples','mean','lowerBound_CI','upperBound_CI')
+  lowerBound_BCI <- bprop_test$conf.int[1]
+  upperBound_BCI <- bprop_test$conf.int[2]
+  
+  diffCI.df <- data.frame('Anim - Mult',task_num,correct_animation,count_animation,prop_animation,correct_multiples,count_multiples,prop_multiples,prop_diff,lowerBound_CI,upperBound_CI,lowerBound_BCI,upperBound_BCI)
+  colnames(diffCI.df) <- c('condition','task','correct_animation','count_animation','prop_animation','correct_multiples','count_multiples','prop_multiples','mean','lowerBound_CI','upperBound_CI','lowerBound_BCI','upperBound_BCI')
   
   return(diffCI.df)
   
@@ -65,7 +69,7 @@ propDiff_CIs.df$task <- revalue(propDiff_CIs.df$task, c("1" = "Task 1",
                                                         "9" = "Task 9"
 ))
 
-plot_propDiff_CI <- dualChart(propDiff_CIs.df,ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 0,percentScale=T)
+plot_propDiff_CI <- dualChart(propDiff_CIs.df,ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 0,percentScale=T)
 
 ggsave(plot = plot_propDiff_CI, filename = "plot_propDiff_CI.pdf", device="pdf", width = 3.75, height = 1.75, units = "in", dpi = 300)
 ggsave(plot = plot_propDiff_CI, filename = "plot_propDiff_CI.png", device="png", width = 3.75, height = 1.75, units = "in", dpi = 300)
@@ -73,34 +77,34 @@ ggsave(plot = plot_propDiff_CI, filename = "plot_propDiff_CI.png", device="png",
 propDiff_CIs.df$condition <- revalue(propDiff_CIs.df$condition, c("Anim - Mult" = "A-M"
 ))
 
-plot_propDiff_CI_axis <- gridChart(propDiff_CIs.df,'Task 1',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_axis <- gridChart(propDiff_CIs.df,'Task 1',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_axis, filename = "plot_propDiff_CI_axis.png", device="png", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_1 <- gridChart(propDiff_CIs.df,'Task 1',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_1 <- gridChart(propDiff_CIs.df,'Task 1',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_1, filename = "plot_propDiff_CI_1.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_2 <- gridChart(propDiff_CIs.df,'Task 2',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_2 <- gridChart(propDiff_CIs.df,'Task 2',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_2, filename = "plot_propDiff_CI_2.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_3 <- gridChart(propDiff_CIs.df,'Task 3',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_3 <- gridChart(propDiff_CIs.df,'Task 3',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_3, filename = "plot_propDiff_CI_3.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_4 <- gridChart(propDiff_CIs.df,'Task 4',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_4 <- gridChart(propDiff_CIs.df,'Task 4',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_4, filename = "plot_propDiff_CI_4.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_5 <- gridChart(propDiff_CIs.df,'Task 5',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_5 <- gridChart(propDiff_CIs.df,'Task 5',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_5, filename = "plot_propDiff_CI_5.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_6 <- gridChart(propDiff_CIs.df,'Task 6',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_6 <- gridChart(propDiff_CIs.df,'Task 6',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_6, filename = "plot_propDiff_CI_6.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_7 <- gridChart(propDiff_CIs.df,'Task 7',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_7 <- gridChart(propDiff_CIs.df,'Task 7',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_7, filename = "plot_propDiff_CI_7.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_8 <- gridChart(propDiff_CIs.df,'Task 8',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_8 <- gridChart(propDiff_CIs.df,'Task 8',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_8, filename = "plot_propDiff_CI_8.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_propDiff_CI_9 <- gridChart(propDiff_CIs.df,'Task 9',ymin = -0.65,ymax = 0.65,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
+plot_propDiff_CI_9 <- gridChart(propDiff_CIs.df,'Task 9',ymin = -0.67,ymax = 0.67,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 0,percentScale=T)
 ggsave(plot = plot_propDiff_CI_9, filename = "plot_propDiff_CI_9.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
 
