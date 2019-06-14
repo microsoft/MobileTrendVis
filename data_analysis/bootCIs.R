@@ -12,7 +12,7 @@ samplemean <- function(x, d) {
 }
 
 # Returns the point estimate and confidence interval in an array of length 3
-bootstrapCI <- function(statistic, datapoints) {
+bootstrapCI <- function(statistic, datapoints,conf) {
   # Compute the point estimate
   pointEstimate <- statistic(datapoints)
   # Make the rest of the code deterministic
@@ -20,7 +20,7 @@ bootstrapCI <- function(statistic, datapoints) {
   # Generate bootstrap replicates
   b <- boot(datapoints, statistic, R = replicates, parallel="multicore")
   # Compute interval
-  ci <- boot.ci(b, type = intervalMethod)
+  ci <- boot.ci(b, type = intervalMethod,conf=conf)
   # Return the point estimate and CI bounds
   # You can print the ci object for more info and debug
   lowerBound <- ci$bca[4]
@@ -29,23 +29,24 @@ bootstrapCI <- function(statistic, datapoints) {
 }
 
 # Returns the mean and its confidence interval in an array of length 3
-bootstrapMeanCI <- function(datapoints) {
-  return(bootstrapCI(samplemean, datapoints))
+bootstrapMeanCI <- function(datapoints,conf) {
+  return(bootstrapCI(samplemean, datapoints,conf))
 }
 
 #boot dif
 bootdif <- function(df) {
-  m <- attr(smean.cl.boot(df[df$condition=='M',]$points, B=10000, reps=TRUE), 'reps')
-  a <- attr(smean.cl.boot(df[df$condition=='A',]$points, B=10000, reps=TRUE), 'reps')
-  
-  meandif <- diff(tapply(df$points, df$condition, mean, na.rm=TRUE)) %>% as.numeric() #bootstrapped mean diff
-  m.a <- quantile(a-m, c(.05,.95)) #95% CI
+  m <- attr(smean.cl.boot(df[df$condition=='multiples',]$points, B=10000, reps=TRUE), 'reps')
+  a <- attr(smean.cl.boot(df[df$condition=='animation',]$points, B=10000, reps=TRUE), 'reps')
+  meandif <- diff(tapply(df$points, df$condition, mean, na.rm=TRUE)) %>% as.numeric() * -1 #bootstrapped mean diff
   
   mean_m <- mean(m, na.rm = T) %>% as.numeric()
   mean_a <- mean(a, na.rm = T) %>% as.numeric()
   
-  result.df <- data.frame('A-M',meandif, m.a[1], m.a[2], mean_m, mean_a)
-  colnames(result.df) <- c('condition','mean','lowerBound_CI','upperBound_CI','mean_m','mean_a')
+  m.a <- quantile(a-m, c(.05,.95)) #95% CI
+  bm.a <- quantile(a-m, c((1-0.9875),0.9875)) #98.75% CI
+  
+  result.df <- data.frame('A-M',meandif, m.a[1], m.a[2], bm.a[1], bm.a[2], mean_m, mean_a)
+  colnames(result.df) <- c('condition','mean','lowerBound_CI','upperBound_CI','lowerBound_BCI','upperBound_BCI','mean_m','mean_a')
   
   return(result.df)
 }

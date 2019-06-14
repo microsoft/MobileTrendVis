@@ -8,13 +8,20 @@ dualChart <- function(resultTable, ymin, ymax, xAxisLabel = "", yAxisLabel = "",
   #now need to calculate one number for the width of the interval
   tr$CI2 <- tr$upperBound_CI - tr$mean
   tr$CI1 <- tr$mean - tr$lowerBound_CI
-
+  tr$BCI2 <- tr$upperBound_BCI - tr$mean
+  tr$BCI1 <- tr$mean - tr$lowerBound_BCI
+  
   # print(tr)
   g <- ggplot(tr, aes(x=condition, y=mean))
   
+  g <- g + geom_errorbar(aes(ymin=mean-BCI1, ymax=mean+BCI2, color=condition),
+                         width=0,                    # Width of the error bars
+                         size = 0.25,
+                         show.legend = F)
+  
   g <- g + geom_errorbar(aes(ymin=mean-CI1, ymax=mean+CI2, color=condition),
                          width=0,                    # Width of the error bars
-                         size = 0.5,
+                         size = 0.75,
                          show.legend = F)
   
   g <- g + geom_point(aes(color=condition), size=2, show.legend = F)

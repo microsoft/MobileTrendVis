@@ -8,13 +8,17 @@ timing_diffCI <- function(result.df,task_num) {
   lowerBound_CI <- exp(ttest$conf.int[1]) %>% as.numeric()
   upperBound_CI <- exp(ttest$conf.int[2]) %>% as.numeric()
   
+  bttest <- t.test(log(completion_time) ~ condition, data = result_subset.df, conf.level = 0.994)
+  lowerBound_BCI <- exp(bttest$conf.int[1]) %>% as.numeric()
+  upperBound_BCI <- exp(bttest$conf.int[2]) %>% as.numeric()
+  
   mean_anim <- ttest$estimate[1] %>% as.numeric()
   mean_mult <- ttest$estimate[2] %>% as.numeric()
   
   mean <- exp(mean_anim - mean_mult)
 
-  timing_diff.df <- data.frame(task_num,'Anim / Mult',mean,lowerBound_CI, upperBound_CI, exp(mean_anim), exp(mean_mult))
-  colnames(timing_diff.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','mean_anim','mean_mult')
+  timing_diff.df <- data.frame(task_num,'Anim / Mult',mean,lowerBound_CI, upperBound_CI, lowerBound_BCI, upperBound_BCI, exp(mean_anim), exp(mean_mult))
+  colnames(timing_diff.df) <- c('task','condition','mean','lowerBound_CI','upperBound_CI','lowerBound_BCI', 'upperBound_BCI', 'mean_anim','mean_mult')
   
   return(timing_diff.df)
   
@@ -59,7 +63,7 @@ timing_diff_CIs.df$task <- revalue(timing_diff_CIs.df$task, c("1" = "Task 1",
                                                               "9" = "Task 9"
 ))
 
-plot_timing_diff_CI <- dualChart(timing_diff_CIs.df,ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI <- dualChart(timing_diff_CIs.df,ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 1,percentScale=F)
 
 ggsave(plot = plot_timing_diff_CI, filename = "plot_timing_diff_CI.pdf", device="pdf", width = 3.75, height = 1.75, units = "in", dpi = 300)
 ggsave(plot = plot_timing_diff_CI, filename = "plot_timing_diff_CI.png", device="png", width = 3.75, height = 1.75, units = "in", dpi = 300)
@@ -67,33 +71,33 @@ ggsave(plot = plot_timing_diff_CI, filename = "plot_timing_diff_CI.png", device=
 timing_diff_CIs.df$condition <- revalue(timing_diff_CIs.df$condition, c("Anim / Mult" = "A/M"
 ))
 
-plot_timing_diff_CI_axis <- gridChart(timing_diff_CIs.df,'Task 1',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_axis <- gridChart(timing_diff_CIs.df,'Task 1',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_axis, filename = "plot_timing_diff_CI_axis.png", device="png", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_1 <- gridChart(timing_diff_CIs.df,'Task 1',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_1 <- gridChart(timing_diff_CIs.df,'Task 1',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_1, filename = "plot_timing_diff_CI_1.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_2 <- gridChart(timing_diff_CIs.df,'Task 2',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_2 <- gridChart(timing_diff_CIs.df,'Task 2',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_2, filename = "plot_timing_diff_CI_2.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_3 <- gridChart(timing_diff_CIs.df,'Task 3',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_3 <- gridChart(timing_diff_CIs.df,'Task 3',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_3, filename = "plot_timing_diff_CI_3.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_4 <- gridChart(timing_diff_CIs.df,'Task 4',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_4 <- gridChart(timing_diff_CIs.df,'Task 4',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_4, filename = "plot_timing_diff_CI_4.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_5 <- gridChart(timing_diff_CIs.df,'Task 5',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_5 <- gridChart(timing_diff_CIs.df,'Task 5',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_5, filename = "plot_timing_diff_CI_5.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_6 <- gridChart(timing_diff_CIs.df,'Task 6',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_6 <- gridChart(timing_diff_CIs.df,'Task 6',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_6, filename = "plot_timing_diff_CI_6.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_7 <- gridChart(timing_diff_CIs.df,'Task 7',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_7 <- gridChart(timing_diff_CIs.df,'Task 7',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_7, filename = "plot_timing_diff_CI_7.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_8 <- gridChart(timing_diff_CIs.df,'Task 8',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_8 <- gridChart(timing_diff_CIs.df,'Task 8',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_8, filename = "plot_timing_diff_CI_8.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 
-plot_timing_diff_CI_9 <- gridChart(timing_diff_CIs.df,'Task 9',ymin = 0.7,ymax = 2.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
+plot_timing_diff_CI_9 <- gridChart(timing_diff_CIs.df,'Task 9',ymin = 0.7,ymax = 3,yAxisLabel = "",xAxisLabel = "",displayXLabels = F,displayYLabels = F,vLineVal = 1,percentScale=F)
 ggsave(plot = plot_timing_diff_CI_9, filename = "plot_timing_diff_CI_9.pdf", device="pdf", width = 1, height = 1, units = "in", dpi = 300)
 

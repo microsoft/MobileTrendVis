@@ -39,7 +39,7 @@ pointDiffCIs.df$task <- revalue(pointDiffCIs.df$task, c("1" = "Task 1",
                                                         # "6" = "Task 6"
 ))
 
-plot_pointDiffCI <- dualChart(pointDiffCIs.df,ymin = -0.7,ymax = 0.7,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 0,percentScale=T)
+plot_pointDiffCI <- dualChart(pointDiffCIs.df,ymin = -0.8,ymax = 0.8,yAxisLabel = "",xAxisLabel = "",displayXLabels = T,displayYLabels = T,vLineVal = 0,percentScale=T)
 
 ggsave(plot = plot_pointDiffCI, filename = "plot_pointDiffCI.pdf", device="pdf", width = 3.75, height = 1.25, units = "in", dpi = 300)
 ggsave(plot = plot_pointDiffCI, filename = "plot_pointDiffCI.png", device="png", width = 3.75, height = 1.25, units = "in", dpi = 300)
